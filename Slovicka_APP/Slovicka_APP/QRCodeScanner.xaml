@@ -34,6 +34,7 @@
             <Button x:Name="btn_scanStart" Grid.Row="4" Grid.Column="2" Text="Začít skenovat" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="10" Clicked="btn_scanStart_Clicked"/>
             <zxing:ZXingScannerView x:Name="QRCodeScan" Grid.Row="4" Grid.Column="2" IsVisible="false" IsScanning="False" OnScanResult="QRCodeScan_OnScanResult"/>
             <Label x:Name="lb_scanInfo" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Text="Po načtení QR kódu dojde automaticky k přidání dané skupiny" HorizontalTextAlignment="Center" Margin="20,10,20,0"/>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

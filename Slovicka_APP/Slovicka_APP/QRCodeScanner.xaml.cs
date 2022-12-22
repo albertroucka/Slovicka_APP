@@ -15,6 +15,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRCodeScanner : ContentPage
     {
+        FirebaseFirestore ff = new FirebaseFirestore();
 
         public QRCodeScanner()
         {
@@ -87,8 +88,6 @@ namespace Slovicka_APP
 
                 if (data.AppName == "Slovicka_APP" && Convert.ToDouble(data.AppVersion) > 0.4)
                 {
-                    FirebaseFirestore ff = new FirebaseFirestore();
-
                     try
                     {
                         ff.InsertNewGroup(data);

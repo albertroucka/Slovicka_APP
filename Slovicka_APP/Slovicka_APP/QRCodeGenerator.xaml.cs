@@ -28,8 +28,8 @@ namespace Slovicka_APP
             try
             {
                 lb_groupCode.Text = groupShare.GroupCode;
-                string QR = $"{groupShare.AppName}; AppVersion: {groupShare.AppVersion}; GroupCode: {groupShare.GroupCode}; GroupName: {groupShare.GroupName};";
-                string QR_encrypted = Convert.ToBase64String(Encoding.Unicode.GetBytes(QR));
+                string QR_string = $"{groupShare.AppName}; AppVersion: {groupShare.AppVersion}; GroupCode: {groupShare.GroupCode}; GroupName: {groupShare.GroupName};";
+                string QR_encrypted = Convert.ToBase64String(Encoding.Unicode.GetBytes(QR_string));
                 QRCodeView.BarcodeValue = QR_encrypted;
             }
             catch (Exception)
