@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Slovicka_APP.WordsGroup">
+
+        <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="qr_code.png" Clicked="GoToQRCreatePage_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame x:Name="frame" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="7" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <Label x:Name="lb_groupName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Text="Název skupiny" FontSize="30" TextColor="{StaticResource app_color_second}" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Frame x:Name="frame0" Grid.Row="2" Grid.Column="2" BackgroundColor="{StaticResource app_color_second}" CornerRadius="20" />
+            <Label x:Name="lb_numberOfTranslates" Grid.Row="2" Grid.Column="2" Text="0" FontSize="28" TextColor="{StaticResource app_color_third}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,30" />
+            <Label x:Name="lb_numberOfTranslates_text" Grid.Row="2" Grid.Column="2" Text="počet překladů" FontSize="13" TextColor="{StaticResource app_color_third}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,30,0,0" />
+            <Frame x:Name="frame1" Grid.Row="2" Grid.Column="4" BackgroundColor="{StaticResource app_color_second}" CornerRadius="20" />
+            <Label x:Name="lb_numberOfExercises" Grid.Row="2" Grid.Column="4" Text="0" FontSize="28" TextColor="{StaticResource app_color_third}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,30" />
+            <Label x:Name="lb_numberOfExercises_text" Grid.Row="2" Grid.Column="4" Text="počet procvičení" FontSize="13" TextColor="{StaticResource app_color_third}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,30,0,0" />
+            <Frame x:Name="frame2" Grid.Row="2" Grid.Column="6" BackgroundColor="{StaticResource app_color_second}" CornerRadius="20" />
+            <Label x:Name="lb_numberOfSuccessRate" Grid.Row="2" Grid.Column="6" Text="00%" FontSize="28" TextColor="{StaticResource app_color_third}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,30" />
+            <Label x:Name="lb_numberOfSuccessRate_text" Grid.Row="2" Grid.Column="6" Text="úspěšnost procvičení" FontSize="13" TextColor="{StaticResource app_color_third}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,30,0,0" />
+            <Label x:Name="lb_firstLang" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Česky" FontSize="22" TextColor="{StaticResource app_color_third}" Margin="10,0,0,0"/>
+            <Label x:Name="lb_secondLang" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Anglicky" FontSize="22" TextColor="{StaticResource app_color_third}" Margin="50,0,0,0"/>
+
+            <CollectionView x:Name="cv_words" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="7" SelectionMode="Single" SelectionChanged="cv_words_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding FirstWord}" FontSize="20" Grid.Column="0" Grid.Row="0"/>
+                            <Label Text="{Binding SecondWord}" FontSize="20" Grid.Column="1" Grid.Row="0"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

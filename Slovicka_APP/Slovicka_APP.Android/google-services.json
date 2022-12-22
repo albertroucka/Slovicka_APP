@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "266980177563",
+    "firebase_url": "https://slovickaapp-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "slovickaapp",
+    "storage_bucket": "slovickaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266980177563:android:9643a0ec757c1609f2383e",
+        "android_client_info": {
+          "package_name": "com.companyname.slovicka_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266980177563-567pn2bu7f442svg79h7n1bl6dbkmjar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcNoIRjoK7vdlwK5_hJcCTjwon27x4nK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266980177563-567pn2bu7f442svg79h7n1bl6dbkmjar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

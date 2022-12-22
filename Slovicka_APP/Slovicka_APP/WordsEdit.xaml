@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Slovicka_APP.WordsEdit">
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame x:Name="frame0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderColor="{StaticResource app_color_main}" CornerRadius="20" Margin="0,-10,0,-10"/>
+            <Entry x:Name="ent_firstWord" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Slovo" Margin="15,0,15,0"/>
+            <Entry x:Name="ent_secondWord" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" Margin="15,0,15,0"/>
+            <Picker x:Name="pk_group" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Title="Vyberte skupinu" ItemDisplayBinding="{Binding GroupName}" Margin="15,0,15,0"/>
+
+            <Button x:Name="btn_update" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="ZMĚNIT" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_update_Clicked"/>
+            <Button x:Name="btn_delete" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="SMAZAT" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_delete_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

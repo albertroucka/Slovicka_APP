@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Slovicka_APP.Options">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="99"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame x:Name="frame" Grid.Row="2" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <Label x:Name="lb_picker" Grid.Row="3" Grid.Column="1" Text="Skupina:" FontSize="18" TextColor="{StaticResource app_color_second}" HorizontalTextAlignment="End" VerticalTextAlignment="End" Margin="0,0,0,10"/>
+            <Picker x:Name="pk_groups" Grid.Row="3" Grid.Column="3" Title="Zvolte skupinu" TitleColor="{StaticResource app_color_second}" TextColor="{StaticResource app_color_second}" ItemDisplayBinding="{Binding GroupName}" IsEnabled="True" Margin="0,0,20,0" />
+            <Label x:Name="lb_exercise" Grid.Row="4" Grid.Column="1" Text="Procvičení:" FontSize="18" TextColor="{StaticResource app_color_second}"  HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="0" />
+            <Picker x:Name="pk_exercise" Grid.Row="4" Grid.Column="3" Title="Zvolte procvičení" TitleColor="{StaticResource app_color_second}" TextColor="{StaticResource app_color_second}" IsEnabled="True" Margin="0,0,20,0"/>
+            <Label x:Name="lb_translate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Obrácený překlad:" FontSize="18" TextColor="{StaticResource app_color_second}" VerticalOptions="Center" Margin="14,0,0,0"/>
+            <Switch x:Name="sw_translate" Grid.Row="5" Grid.Column="3" ThumbColor="{StaticResource app_color_fourth}" OnColor="{StaticResource app_color_second}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Button x:Name="btn_Start" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="ZAČÍT" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="25,0,25,0" Clicked="btn_Start_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

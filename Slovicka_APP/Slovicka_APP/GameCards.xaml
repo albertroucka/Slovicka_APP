@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Slovicka_APP.GameCards">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="320"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="lb_groupName" Grid.Row="0" Grid.Column="1" Text="Název skupiny" FontSize="40" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,20,0,0"/>
+            <Button x:Name="btn_card" Grid.Row="1" Grid.Column="1" Text="Slovo" FontSize="45" TextColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" BorderWidth="1" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Clicked="btn_card_Clicked"/>
+            <Label x:Name="lb_count" Grid.Row="2" Grid.Column="1"  Text="X/X" TextColor="{StaticResource app_color_third}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" Margin="0"/>
+            <Button x:Name="btn_back" Grid.Row="2" Grid.Column="1" Text="ZPĚT" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="10" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,180,0" Clicked="btn_back_Clicked"/>
+            <Button x:Name="btn_next" Grid.Row="2" Grid.Column="1" Text="DALŠÍ" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="10" HorizontalOptions="Center" VerticalOptions="Center" Margin="180,0,0,0" Clicked="btn_next_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

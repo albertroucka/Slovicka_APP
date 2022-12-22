@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Slovicka_APP.Result">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame x:Name="frame" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <Label x:Name="lb_endgame" Grid.Row="1" Grid.Column="1" Text="KONEC HRY" TextColor="{StaticResource app_color_second}" FontSize="40" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label x:Name="lb_score" Grid.Row="2" Grid.Column="1" Text="Skóre: X/XX" TextColor="{StaticResource app_color_second}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start"/>
+            <Label x:Name="lb_successRate" Grid.Row="2" Grid.Column="1" Text="Úspěšnost: XXX%" TextColor="{StaticResource app_color_second}" FontSize="30" HorizontalOptions="Center" VerticalOptions="End"/>
+
+            <Image x:Name="img_trophy0" Grid.Row="3" Grid.Column="1" Source="trophy_gray.png" Margin="0,0,120,0"/>
+            <Image x:Name="img_trophy1" Grid.Row="3" Grid.Column="1" Source="trophy_gray.png" Margin="0"/>
+            <Image x:Name="img_trophy2" Grid.Row="3" Grid.Column="1" Source="trophy_gray.png" Margin="120,0,0,0"/>
+
+            <Frame x:Name="frame1" Grid.Row="4" Grid.Column="1" BackgroundColor="{StaticResource app_color_second}" CornerRadius="20" Margin="20"/>
+            <CollectionView x:Name="cv_answers" Grid.Row="4" Grid.Column="1" Margin="30">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="{Binding FirstWord}" TextColor="{StaticResource app_color_third}"/>
+                            <Label Grid.Column="1" Text="{Binding GroupName}" TextColor="#F80606"/>
+                            <Label Grid.Column="2" Text="{Binding SecondWord}" TextColor="#04AD33"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button x:Name="btn_PlayAgain" Grid.Row="6" Grid.Column="1" Text="HRÁT ZNOVU" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="80,5,80,5" Clicked="btn_PlayAgin_Clicked"/>
+            <Button x:Name="btn_MainMenu" Grid.Row="7" Grid.Column="1" Text="MENU" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="80,5,80,5" Clicked="btn_MainMenu_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

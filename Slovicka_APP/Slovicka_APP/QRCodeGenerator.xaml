@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Slovicka_APP.QRCodeGenerator"
+             xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="220"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="lb_QRgen" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="Pro přenos skupiny zadejte kód nebo načtěte tento QR kód v aplikaci na jiném zařízení" HorizontalTextAlignment="Center" VerticalOptions="End" Margin="10"/>
+            <Label x:Name="lb_groupCode" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="XXXXXX" FontSize="35" HorizontalTextAlignment="Center" Margin="0,-10,0,0"/>
+            <Frame Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <Frame Grid.Row="3" Grid.Column="2" BackgroundColor="{StaticResource app_color_second}" CornerRadius="20" Margin="-10"/>
+            <zxing:ZXingBarcodeImageView x:Name="QRCodeView" Grid.Row="3" Grid.Column="2" BarcodeFormat="QR_CODE" IsVisible="True" HorizontalOptions="Fill" VerticalOptions="Fill">
+                <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                    <zxcm:EncodingOptions Width="250" Height="250"/>
+                </zxing:ZXingBarcodeImageView.BarcodeOptions>
+            </zxing:ZXingBarcodeImageView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
