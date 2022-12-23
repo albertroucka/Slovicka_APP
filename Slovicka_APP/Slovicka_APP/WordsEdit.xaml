@@ -23,9 +23,9 @@
             </Grid.ColumnDefinitions>
 
             <Frame x:Name="frame0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2" BorderColor="{StaticResource app_color_main}" CornerRadius="20" Margin="0,-10,0,-10"/>
-            <Entry x:Name="ent_firstWord" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Slovo" Margin="15,0,15,0"/>
-            <Entry x:Name="ent_secondWord" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" Margin="15,0,15,0"/>
-            <Picker x:Name="pk_group" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Title="Vyberte skupinu" ItemDisplayBinding="{Binding GroupName}" Margin="15,0,15,0"/>
+            <Entry x:Name="ent_firstWord" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Slovo" TextColor="{StaticResource app_color_third}" PlaceholderColor="{StaticResource app_color_third}" Margin="15,0,15,0"/>
+            <Entry x:Name="ent_secondWord" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" TextColor="{StaticResource app_color_third}" PlaceholderColor="{StaticResource app_color_third}" Margin="15,0,15,0"/>
+            <Picker x:Name="pk_group" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Title="Vyberte skupinu" TitleColor="{StaticResource app_color_third}" ItemDisplayBinding="{Binding GroupName}" Margin="15,0,15,0"/>
 
             <Button x:Name="btn_update" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="ZMĚNIT" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_update_Clicked"/>
             <Button x:Name="btn_delete" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="SMAZAT" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_delete_Clicked"/>

@@ -38,7 +38,7 @@ namespace Slovicka_APP
 
         private void btn_scanStart_Clicked(object sender, EventArgs e)
         {
-            btn_codeConfirm.IsVisible = false;
+            btn_scanStart.IsVisible = false;
             QRCodeScan.IsVisible = true;
             QRCodeScan.IsScanning = true;
         }
@@ -86,7 +86,7 @@ namespace Slovicka_APP
             {
                 var data = document.ToObject<GroupShare>();
 
-                if (data.AppName == "Slovicka_APP" && Convert.ToDouble(data.AppVersion) > 0.4)
+                if (data.AppName == "Slovicka_APP")
                 {
                     try
                     {
@@ -109,6 +109,11 @@ namespace Slovicka_APP
             {
                 DisplayAlert("Chyba", "Skupina se zadaným kódem neexistuje!", "Ok");
             }
+        }
+
+        private void LoadFromFile_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

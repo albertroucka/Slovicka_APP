@@ -14,7 +14,6 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Result : ContentPage
     {
-        //private List<Translate> wrongAnswers;
 
         public Result(int points, List<Translate> wrongAnswers, Group selectedGroup)
         {
@@ -74,15 +73,7 @@ namespace Slovicka_APP
             {
                 conn.CreateTable<Group>();
                 int rows = conn.Update(selectedGroup);
-                if (rows > 0)
-                {
-                    DisplayAlert("Úspěch", "Statistiky úspěšně!", "Ok");
-                    //Navigation.PopAsync();
-                }
-                else
-                {
-                    DisplayAlert("Chyba", "Statistiky se nepovedlo aktualizovat!", "Ok");
-                }
+                if (rows > 0) { }
             }
         }
 

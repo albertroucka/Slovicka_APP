@@ -44,7 +44,7 @@ namespace Slovicka_APP.Models
                 }
                 else if (users.Count > 0)
                 {
-                    return ff.GetFirestoreUserTrophies();
+                    return users[0].NumberOfTrophies.ToString();
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace Slovicka_APP.Models
 
         public List<string> GetAllLanguages()
         {
-            List<string> Lang = new List<string>() { "Anglicky", "Česky", "Německy" };
+            List<string> Lang = new List<string>() { "Anglicky", "Česky", "Francouzsky", "Italsky", "Německy", "Polsky", "Slovensky", "Španělsky" };
             return Lang;
         }
     }

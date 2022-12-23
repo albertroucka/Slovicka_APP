@@ -115,9 +115,10 @@ namespace Slovicka_APP.Models
 
                     foreach (var item in Usages)
                     {
-                        if (item.FirstWord == quest.SecondWord)
+                        if (item.FirstWord == quest.FirstWord)
                         {
-                            b = true;
+                            b = true; 
+                            break;
                         }
                     }
 

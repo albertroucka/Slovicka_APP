@@ -5,6 +5,9 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using System.IO;
+using Plugin.CloudFirestore;
+using SQLite;
+using Plugin.CloudFirestore.Attributes;
 
 namespace Slovicka_APP.Droid
 {

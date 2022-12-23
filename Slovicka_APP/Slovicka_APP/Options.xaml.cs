@@ -89,7 +89,7 @@ namespace Slovicka_APP
                         }
                         else
                         {
-                            DisplayAlert("Chyba", "V seznamu musíte mít alespoň 3 slovíčka!", "Ok");
+                            DisplayAlert("Chyba", "Ve zvolené skupině musíte mít alespoň 3 překlady!", "Ok");
                         }
                     }
                     else if (exercise == "Kartičky")
@@ -100,7 +100,7 @@ namespace Slovicka_APP
                         }
                         else
                         {
-                            DisplayAlert("Chyba", "V seznamu nemáte žádná slovíčka k procvičení!", "Ok");
+                            DisplayAlert("Chyba", "Ve zvolené skupině nemáte žádné překlady k procvičení!", "Ok");
                         }
                     }
                     else

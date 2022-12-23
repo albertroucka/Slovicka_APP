@@ -41,8 +41,8 @@
             <Frame x:Name="frame2" Grid.Row="2" Grid.Column="6" BackgroundColor="{StaticResource app_color_second}" CornerRadius="20" />
             <Label x:Name="lb_numberOfSuccessRate" Grid.Row="2" Grid.Column="6" Text="00%" FontSize="28" TextColor="{StaticResource app_color_third}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,30" />
             <Label x:Name="lb_numberOfSuccessRate_text" Grid.Row="2" Grid.Column="6" Text="úspěšnost procvičení" FontSize="13" TextColor="{StaticResource app_color_third}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,30,0,0" />
-            <Label x:Name="lb_firstLang" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Česky" FontSize="22" TextColor="{StaticResource app_color_third}" Margin="10,0,0,0"/>
-            <Label x:Name="lb_secondLang" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Anglicky" FontSize="22" TextColor="{StaticResource app_color_third}" Margin="50,0,0,0"/>
+            <Label x:Name="lb_firstLang" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Česky" FontSize="22" TextColor="{StaticResource app_color_third}" Margin="0,0,0,0"/>
+            <Label x:Name="lb_secondLang" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Anglicky" FontSize="22" TextColor="{StaticResource app_color_third}" Margin="40,0,0,0"/>
 
             <CollectionView x:Name="cv_words" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="7" SelectionMode="Single" SelectionChanged="cv_words_SelectionChanged">
                 <CollectionView.ItemTemplate>

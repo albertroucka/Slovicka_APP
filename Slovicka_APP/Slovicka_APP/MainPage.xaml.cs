@@ -51,7 +51,7 @@ namespace Slovicka_APP
 
                 if (users.Count == 0)
                 {
-                    User user = new User() { UserName = "Albert R.", Password = "admin", NumberOfTrophies = 0, AllGroups = null };
+                    User user = new User() { UserName = "Testovací", Password = "admin", NumberOfTrophies = 0, AllGroups = null };
 
                     int rows = conn.Insert(user);
                     if (rows > 0)

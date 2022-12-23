@@ -126,7 +126,7 @@ namespace Slovicka_APP.Models
 
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                conn.CreateTable<Translate>(); bool err = false;
+                conn.CreateTable<Translate>();
 
                 foreach (var item in translates)
                 {
