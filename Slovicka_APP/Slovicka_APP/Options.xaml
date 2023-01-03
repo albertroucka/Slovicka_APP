@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Frame x:Name="frame" Grid.Row="2" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <Frame x:Name="frame" Grid.Row="2" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="{DynamicResource app_color_main}" CornerRadius="20"/>
             <Label x:Name="lb_picker" Grid.Row="3" Grid.Column="1" Text="Skupina:" FontSize="18" TextColor="{StaticResource app_color_second}" HorizontalTextAlignment="End" VerticalTextAlignment="End" Margin="0,0,0,10"/>
             <Picker x:Name="pk_groups" Grid.Row="3" Grid.Column="3" Title="Zvolte skupinu" TitleColor="{StaticResource app_color_second}" TextColor="{StaticResource app_color_second}" ItemDisplayBinding="{Binding GroupName}" IsEnabled="True" Margin="0,0,20,0" />
             <Label x:Name="lb_exercise" Grid.Row="4" Grid.Column="1" Text="Procvičení:" FontSize="18" TextColor="{StaticResource app_color_second}"  HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="0" />

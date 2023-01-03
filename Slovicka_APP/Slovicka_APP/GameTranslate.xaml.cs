@@ -13,7 +13,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GameTranslate : ContentPage
     {
-        Question questions = new Question(); List<Translate> GameList; List<Translate> WrongAnswers = new List<Translate>();
+        Question questions = new Question(); List<Translate> GameList; List<Translate> WrongAnswers = new List<Translate>(); MainClass mainClass = new MainClass();
         int round = 1; int points = 0; string correctAnswer; bool translate; Group selectedGroup;
 
         public GameTranslate(List<Translate> gameList, bool translate, string firstLang, string secondLang, Group selectedGroup)
@@ -51,13 +51,24 @@ namespace Slovicka_APP
             string answer = ent_second_lang.Text;
             ent_second_lang.Text = "";
 
-            if (answer.ToLower() == correctAnswer.ToLower())
+            if (answer != null)
             {
-                points++;
-                lb_points.Text = Convert.ToString(points);
+                if (answer.ToLower() == correctAnswer.ToLower())
+                {
+                    mainClass.AnswerColor(true);
+                    points++;
+                    lb_points.Text = Convert.ToString(points);
+                }
+                else
+                {
+                    mainClass.AnswerColor(false);
+                    Translate translate = new Translate() { FirstWord = lb_first_lang.Text, SecondWord = correctAnswer, GroupName = answer };
+                    WrongAnswers.Add(translate);
+                }
             }
             else
             {
+                mainClass.AnswerColor(false);
                 Translate translate = new Translate() { FirstWord = lb_first_lang.Text, SecondWord = correctAnswer, GroupName = answer };
                 WrongAnswers.Add(translate);
             }

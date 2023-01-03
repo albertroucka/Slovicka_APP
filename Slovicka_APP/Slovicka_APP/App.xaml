@@ -8,6 +8,7 @@
             <Color x:Key="app_color_second">#FFFFFF</Color>
             <Color x:Key="app_color_third">#6D6D6D</Color>
             <Color x:Key="app_color_fourth">#F63E8B</Color>
+            <Color x:Key="app_color_answer">#FFFFFF</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

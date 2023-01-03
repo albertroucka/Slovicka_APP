@@ -15,7 +15,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRCodeScanner : ContentPage
     {
-        FirebaseFirestore ff = new FirebaseFirestore();
+        FirebaseFirestore ff = new FirebaseFirestore(); MainClass mainClass = new MainClass();
 
         public QRCodeScanner()
         {
@@ -32,7 +32,14 @@ namespace Slovicka_APP
             }
             else
             {
-                CheckGroupShareCode(groupCode);
+                if (mainClass.CheckInternetConnection())
+                {
+                    CheckGroupShareCode(groupCode);
+                }
+                else
+                {
+                    DisplayAlert("Chyba", "Nejste připojeni k internetu!", "Ok");
+                }
             }
         }
 
@@ -70,7 +77,15 @@ namespace Slovicka_APP
                 groupName = groupName.Replace("GroupName: ", "");
                 stringResult = stringResult.Remove(0, i + 1);
 
-                CheckGroupShareCode(groupCode);
+
+                if (mainClass.CheckInternetConnection())
+                {
+                    CheckGroupShareCode(groupCode);
+                }
+                else
+                {
+                    DisplayAlert("Chyba", "Nejste připojeni k internetu!", "Ok");
+                }
             });
         }
 

@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Slovicka_APP.Models
 {
@@ -68,6 +71,36 @@ namespace Slovicka_APP.Models
                 {
                     return null;
                 }
+            }
+        }
+
+        public bool CheckInternetConnection()
+        {
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async void AnswerColor(bool result)
+        {
+            if (result)
+            {
+                App.Current.Resources["app_color_answer"] = Color.FromHex("#04AD33");
+                await Task.Delay(500);
+                App.Current.Resources["app_color_answer"] = Color.FromHex("#FFFFFF");
+            }
+            else
+            {
+                App.Current.Resources["app_color_answer"] = Color.FromHex("#F80606");
+                await Task.Delay(500);
+                App.Current.Resources["app_color_answer"] = Color.FromHex("#FFFFFF");
             }
         }
 

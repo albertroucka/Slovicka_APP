@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,7 +14,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GameOptions : ContentPage
     {
-        QuestionABC questions = new QuestionABC(); List<Translate> GameList; List<Translate> WrongAnswers = new List<Translate>();
+        QuestionABC questions = new QuestionABC(); List<Translate> GameList; List<Translate> WrongAnswers = new List<Translate>(); MainClass mainClass = new MainClass();
         int round = 0; int points = 0; string correctAnswer; bool translate; Group selectedGroup;
 
         public GameOptions(List<Translate> gameList, bool translate, string firstLang, string secondLang, Group selectedGroup)
@@ -64,10 +65,12 @@ namespace Slovicka_APP
         {
             if (btn_A.Text == correctAnswer)
             {
+                mainClass.AnswerColor(true);
                 points++;
             }
             else
             {
+                mainClass.AnswerColor(false);
                 Translate translate = new Translate() { FirstWord = lb_first_lang.Text, SecondWord = correctAnswer, GroupName = btn_A.Text };
                 WrongAnswers.Add(translate);
             }
@@ -78,10 +81,12 @@ namespace Slovicka_APP
         {
             if (btn_B.Text == correctAnswer)
             {
+                mainClass.AnswerColor(true);
                 points++;
             }
             else
             {
+                mainClass.AnswerColor(false);
                 Translate translate = new Translate() { FirstWord = lb_first_lang.Text, SecondWord = correctAnswer, GroupName = btn_B.Text };
                 WrongAnswers.Add(translate);
             }
@@ -92,10 +97,12 @@ namespace Slovicka_APP
         {
             if (btn_C.Text == correctAnswer)
             {
+                mainClass.AnswerColor(true);
                 points++;
             }
             else
             {
+                mainClass.AnswerColor(false);
                 Translate translate = new Translate() { FirstWord = lb_first_lang.Text, SecondWord = correctAnswer, GroupName = btn_C.Text };
                 WrongAnswers.Add(translate);
             }

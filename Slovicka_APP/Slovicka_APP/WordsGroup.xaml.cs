@@ -16,7 +16,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WordsGroup : ContentPage
     {
-        Group selectedGroup; List<Translate> translatesList; FirebaseFirestore ff = new FirebaseFirestore();
+        Group selectedGroup; List<Translate> translatesList; FirebaseFirestore ff = new FirebaseFirestore(); MainClass mainClass = new MainClass();
 
         public WordsGroup(Group selectedGroup)
         {
@@ -101,16 +101,23 @@ namespace Slovicka_APP
                         Translates = translates
                     };
 
-                    if (selectedGroup.GroupCode != null)
+                    if (mainClass.CheckInternetConnection())
                     {
-                        groupShare.GroupCode = selectedGroup.GroupCode;
-                        UpdateGroupShare(groupShare);
+                        if (selectedGroup.GroupCode != null)
+                        {
+                            groupShare.GroupCode = selectedGroup.GroupCode;
+                            UpdateGroupShare(groupShare);
+                        }
+                        else
+                        {
+                            groupShare.GroupCode = ff.GenereteGroupShareCode();
+                            UploadGroupShare(groupShare, selectedGroup);
+                        }
                     }
                     else
                     {
-                        groupShare.GroupCode = ff.GenereteGroupShareCode();
-                        UploadGroupShare(groupShare, selectedGroup);
-                    }
+                        DisplayAlert("Chyba", "Nejste připojeni k internetu!", "Ok");
+                    }                 
                 }
             }
             else
