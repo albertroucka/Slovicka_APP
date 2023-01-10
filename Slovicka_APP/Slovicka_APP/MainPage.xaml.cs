@@ -18,6 +18,7 @@ namespace Slovicka_APP
         public MainPage()
         {
             InitializeComponent();
+            CreateUserOnStart();
             SetValues();
         }
 
@@ -44,7 +45,7 @@ namespace Slovicka_APP
 
         private void btn_account_Clicked(object sender, EventArgs e)
         {
-            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            /*using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 conn.CreateTable<User>();
                 var users = conn.Table<User>().ToList();
@@ -67,6 +68,29 @@ namespace Slovicka_APP
                 else
                 {
                     DisplayAlert("Chyba", "Uživatel je již vytvořen!", "Ok");
+                }
+            }
+
+            btn_account.Text = mainClass.GetUserName();
+            btn_trophies.Text = mainClass.GetUserTrophiesCount();*/
+        }
+
+        private void CreateUserOnStart()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            {
+                conn.CreateTable<User>();
+                var users = conn.Table<User>().ToList();
+
+                if (users.Count == 0)
+                {
+                    User user = new User() { UserName = "Nepřihlášen", Password = "admin", NumberOfTrophies = 0, AllGroups = null };
+
+                    int rows = conn.Insert(user);
+                    if (rows > 0)
+                    { 
+                    
+                    }                       
                 }
             }
 

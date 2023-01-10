@@ -93,13 +93,13 @@ namespace Slovicka_APP.Models
             if (result)
             {
                 App.Current.Resources["app_color_answer"] = Color.FromHex("#04AD33");
-                await Task.Delay(500);
+                await Task.Delay(250);
                 App.Current.Resources["app_color_answer"] = Color.FromHex("#FFFFFF");
             }
             else
             {
                 App.Current.Resources["app_color_answer"] = Color.FromHex("#F80606");
-                await Task.Delay(500);
+                await Task.Delay(250);
                 App.Current.Resources["app_color_answer"] = Color.FromHex("#FFFFFF");
             }
         }

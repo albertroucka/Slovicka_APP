@@ -89,5 +89,21 @@ namespace Slovicka_APP
                 NewQuestion();
             }
         }
+
+        private void ent_second_lang_Completed(object sender, EventArgs e)
+        {
+            CheckAnswer();
+
+            if (round > 9)
+            {
+                Navigation.PushAsync(new Result(points, WrongAnswers, selectedGroup));
+            }
+            else
+            {
+                round++;
+                lb_round.Text = Convert.ToString(round);
+                NewQuestion();
+            }
+        }
     }
 }

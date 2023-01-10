@@ -36,7 +36,7 @@
 
             <Frame x:Name="frame_second" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
             <Label x:Name="lb_second_lang_text" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Anglicky:" TextColor="{StaticResource app_color_main}" FontSize="30" Margin="15,10,0,0"/>
-            <Entry x:Name="ent_second_lang" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" PlaceholderColor="{StaticResource app_color_third}" TextColor="{StaticResource app_color_third}" FontSize="25" VerticalOptions="Start" Margin="15,-20,15,0"/>
+            <Entry x:Name="ent_second_lang" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" PlaceholderColor="{StaticResource app_color_third}" TextColor="{StaticResource app_color_third}" FontSize="25" VerticalOptions="Start" Margin="15,-20,15,0" Completed="ent_second_lang_Completed"/>
 
             <Button x:Name="btn_confirm" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Text="POTVRDIT" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_confirm_Clicked"/>
         </Grid>
