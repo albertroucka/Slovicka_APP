@@ -16,12 +16,12 @@ namespace Slovicka_APP.Models
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                conn.CreateTable<User>();
-                var users = conn.Table<User>().ToList();
+                conn.CreateTable<LocalUser>();
+                var users = conn.Table<LocalUser>().ToList();
 
-                if (ff.GetFirestoreUserAuth())
+                if (users.Count > 1)
                 {
-                    return ff.GetFirestoreUserName();
+                    return users[1].UserName;
                 }
                 else if (users.Count > 0)
                 {
@@ -29,7 +29,7 @@ namespace Slovicka_APP.Models
                 }
                 else
                 {
-                    return "Nepřihlášen";
+                    return "???";
                 }
             }
         }
@@ -38,12 +38,12 @@ namespace Slovicka_APP.Models
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                conn.CreateTable<User>();
-                var users = conn.Table<User>().ToList();
+                conn.CreateTable<LocalUser>();
+                var users = conn.Table<LocalUser>().ToList();
 
-                if (ff.GetFirestoreUserAuth())
+                if (users.Count > 1)
                 {
-                    return ff.GetFirestoreUserTrophies();
+                    return users[1].NumberOfTrophies.ToString();
                 }
                 else if (users.Count > 0)
                 {
@@ -56,14 +56,18 @@ namespace Slovicka_APP.Models
             }
         }
 
-        public User GetUser()
+        public LocalUser GetUser()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                conn.CreateTable<User>();
-                var users = conn.Table<User>().ToList();
+                conn.CreateTable<LocalUser>();
+                var users = conn.Table<LocalUser>().ToList();
 
-                if (users.Count > 0)
+                if (users.Count > 1)
+                {
+                    return users[1];
+                }
+                else if (users.Count > 0)
                 {
                     return users[0];
                 }
@@ -108,20 +112,22 @@ namespace Slovicka_APP.Models
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                User user = GetUser();
+                LocalUser user = GetUser();
 
                 if (user != null)
                 {
                     user.NumberOfTrophies = user.NumberOfTrophies + trophiesCount;
-                    conn.CreateTable<User>();
+                    user.NumberOfExercises = user.NumberOfExercises + 1;
+                    conn.CreateTable<LocalUser>();
                     int rows = conn.Update(user);
                     if (rows > 0)
                     {
+                        if (user.FirebaseId != null)
+                        {
+                            FirebaseUser firebaseUser = new FirebaseUser() { FirebaseId = user.FirebaseId, UserName = user.UserName, UserEmail = user.UserEmail, NumberOfTrophies = user.NumberOfTrophies, NumberOfExercises = user.NumberOfExercises, NumberOfCreatedGroups = user.NumberOfCreatedGroups, NumberOfSharedGroups = user.NumberOfSharedGroups, RegistrationDate = user.RegistrationDate, AllGroups = user.AllGroups };
+                            ff.UpdateFirebaseUser(firebaseUser);
+                        }
                         return false;
-                    }
-                    else
-                    {
-                        
                     }
                 }
                 return true;

@@ -14,6 +14,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Result : ContentPage
     {
+        MainClass mainClass = new MainClass(); FirebaseFirestore ff = new FirebaseFirestore();
 
         public Result(int points, List<Translate> wrongAnswers, Group selectedGroup)
         {
@@ -60,7 +61,6 @@ namespace Slovicka_APP
             }
 
             //přidání trofejí do uživatelského účtu
-            MainClass mainClass = new MainClass();
             mainClass.UpdateUserStats(trophiesCount);
         }
 
@@ -75,6 +75,7 @@ namespace Slovicka_APP
                 int rows = conn.Update(selectedGroup);
                 if (rows > 0) { }
             }
+            ff.UpdateFirebaseUserGroups(false);
         }
 
         private void btn_PlayAgin_Clicked(object sender, EventArgs e)

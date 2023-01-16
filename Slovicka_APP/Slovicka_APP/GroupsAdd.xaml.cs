@@ -14,7 +14,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GroupsAdd : ContentPage
     {
-        MainClass mainClass = new MainClass();
+        MainClass mainClass = new MainClass(); FirebaseFirestore ff = new FirebaseFirestore();
 
         public GroupsAdd()
         {
@@ -79,6 +79,7 @@ namespace Slovicka_APP
                             if (rows > 0)
                             {
                                 DisplayAlert("Úspěch", "Skupina byla úspěšně vytvořena!", "Ok");
+                                ff.UpdateFirebaseUserGroups(true);
                                 ent_groupName.Text = string.Empty;
                                 pk_firstLang.SelectedItem = null;
                                 pk_secondLang.SelectedItem = null;

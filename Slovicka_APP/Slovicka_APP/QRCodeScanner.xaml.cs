@@ -105,7 +105,17 @@ namespace Slovicka_APP
                 {
                     try
                     {
-                        ff.InsertNewGroup(data);
+                        Group newGroup = new Group()
+                        {
+                            GroupName = data.GroupName,
+                            FirstLang = data.FirstLang,
+                            SecondLang = data.SecondLang,
+                            NumberOfExercises = 0,
+                            SuccessRate = 100
+                        };
+
+                        ff.InsertNewGroup(newGroup, data.Translates, false);
+                        ff.UpdateFirebaseUserGroups(false);
                         DisplayAlert("Úspěch", "Skupina byla úspěšně načtena a přidána!", "Ok");
                         Navigation.PopAsync();
                     }
@@ -128,7 +138,7 @@ namespace Slovicka_APP
 
         private void LoadFromFile_Clicked(object sender, EventArgs e)
         {
-
+            DisplayAlert("Upozornění", "Tato funknce není zatím dostupná a bude přidána v následujícíh verzích", "Ok");
         }
     }
 }

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Slovicka_APP.UserLogin">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="1" Text="Přihlášení" FontSize="30" TextColor="{StaticResource app_color_main}"/>
+            <Entry x:Name="ent_username" Grid.Row="2" Grid.Column="1" Placeholder="Uživatelský e-mail"/>
+            <Entry x:Name="ent_password" Grid.Row="3" Grid.Column="1" Placeholder="Heslo" IsPassword="True"/>
+            <Button x:Name="btn_confirm" Grid.Row="5" Grid.Column="1" Text="POTVRDIT" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_confirm_Clicked"/>
+            <Label x:Name="lb_forgottenpass" Grid.Row="6" Grid.Column="1" Text="Zampomenuté heslo? Obnovte si ho!" HorizontalTextAlignment="Center" VerticalTextAlignment="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="lb_forgottenpass_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label x:Name="lb_register" Grid.Row="7" Grid.Column="1" Text="Nemáte účet? Zaregistrujte se!" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="lb_register_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

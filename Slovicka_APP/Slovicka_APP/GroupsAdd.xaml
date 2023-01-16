@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
 
             <Frame x:Name="frame" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
-            <Entry x:Name="ent_groupName" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Placeholder="Zadejte název skupiny" PlaceholderColor="{StaticResource app_color_third}"/>
+            <Entry x:Name="ent_groupName" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Placeholder="Zadejte název skupiny" PlaceholderColor="{StaticResource app_color_third}" TextColor="{StaticResource app_color_third}"/>
             <Label x:Name="lb_firstLang" Grid.Row="2" Grid.Column="2" Text="Slovo:" FontSize="20" TextColor="{StaticResource app_color_third}" VerticalTextAlignment="Center"/>
             <Picker x:Name="pk_firstLang" Grid.Row="2" Grid.Column="3" Title="Vyberte jazyk" FontSize="18" TextColor="{StaticResource app_color_third}" TitleColor="{StaticResource app_color_third}" IsEnabled="True" HorizontalOptions="Start" Margin="-60,-15,0,0"/>
             <Label x:Name="lb_secondLang" Grid.Row="3" Grid.Column="2" Text="Překlad: " FontSize="20" TextColor="{StaticResource app_color_third}" VerticalTextAlignment="Center"/>

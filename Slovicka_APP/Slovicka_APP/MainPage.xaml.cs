@@ -19,6 +19,7 @@ namespace Slovicka_APP
         {
             InitializeComponent();
             CreateUserOnStart();
+            ff.DownloadFirebaseUserData();
             SetValues();
         }
 
@@ -45,46 +46,32 @@ namespace Slovicka_APP
 
         private void btn_account_Clicked(object sender, EventArgs e)
         {
-            /*using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                conn.CreateTable<User>();
-                var users = conn.Table<User>().ToList();
+                conn.CreateTable<LocalUser>();
+                var users = conn.Table<LocalUser>().ToList();
 
-                if (users.Count == 0)
+                if (users.Count > 1)
                 {
-                    User user = new User() { UserName = "Testovací", Password = "admin", NumberOfTrophies = 0, AllGroups = null };
-
-                    int rows = conn.Insert(user);
-                    if (rows > 0)
-                    {
-                        DisplayAlert("Úspěch", "Uživatel byl úspěšně vytvořen!", "Ok");
-
-                    }
-                    else
-                    {
-                        DisplayAlert("Chyba", "Uživatele se nepodařilo vytvořit!", "Ok");
-                    }
+                    Navigation.PushAsync(new UserDetail());
                 }
                 else
                 {
-                    DisplayAlert("Chyba", "Uživatel je již vytvořen!", "Ok");
+                    Navigation.PushAsync(new UserLogin());
                 }
             }
-
-            btn_account.Text = mainClass.GetUserName();
-            btn_trophies.Text = mainClass.GetUserTrophiesCount();*/
         }
 
         private void CreateUserOnStart()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                conn.CreateTable<User>();
-                var users = conn.Table<User>().ToList();
+                conn.CreateTable<LocalUser>();
+                var users = conn.Table<LocalUser>().ToList();
 
                 if (users.Count == 0)
                 {
-                    User user = new User() { UserName = "Nepřihlášen", Password = "admin", NumberOfTrophies = 0, AllGroups = null };
+                    LocalUser user = new LocalUser() { FirebaseId = null, UserName = "Nepřihlášen", UserEmail = null, NumberOfTrophies = 0, NumberOfExercises = 0, NumberOfCreatedGroups = 0, NumberOfSharedGroups = 0, AllGroups = null, RegistrationDate = DateTime.Now };
 
                     int rows = conn.Insert(user);
                     if (rows > 0)
@@ -96,6 +83,12 @@ namespace Slovicka_APP
 
             btn_account.Text = mainClass.GetUserName();
             btn_trophies.Text = mainClass.GetUserTrophiesCount();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            return true;
         }
     }
 }

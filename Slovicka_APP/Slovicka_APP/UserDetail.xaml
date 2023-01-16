@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Slovicka_APP.UserDetail">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundColor="{StaticResource app_color_main}"/>
+            <Image x:Name="img_profile" Grid.Row="2" Grid.Column="1" Source="account.png"/>
+            <Label x:Name="lb_name" Grid.Row="3" Grid.Column="1" Text="Uživ. jméno: X" FontSize="20"/>
+            <Entry x:Name="ent_name" Grid.Row="3" Grid.Column="1" IsVisible="false" Margin="-5,-10,0,-5"/>
+            <Label x:Name="lb_email" Grid.Row="4" Grid.Column="1" Text="E-mail: X@X.X" FontSize="20"/>
+            <Label x:Name="lb_numberOfTrophies" Grid.Row="5" Grid.Column="1" Text="Získané poháry: X" FontSize="20"/>
+            <Label x:Name="lb_numberOfExercises" Grid.Row="6" Grid.Column="1" Text="Počet procvičení: X" FontSize="20"/>
+            <Label x:Name="lb_numberOfCreatedGroups" Grid.Row="7" Grid.Column="1" Text="Vytvořeno skupin: X" FontSize="20"/>
+            <Label x:Name="lb_numberOfSharedGroups" Grid.Row="8" Grid.Column="1" Text="Sdíleno skupin: X" FontSize="20"/>
+            <Label x:Name="lb_registrationDate" Grid.Row="9" Grid.Column="1" Text="Datum registrace: XX.XX.XXXX" FontSize="20"/>
+            <Button x:Name="btn_updateUserData" Grid.Row="10" Grid.Column="1" Text="Upravit uživatele" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_updateUserData_Clicked"/>
+            <Button x:Name="btn_logout" Grid.Row="11" Grid.Column="1" Text="Odhlásit se" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_logout_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

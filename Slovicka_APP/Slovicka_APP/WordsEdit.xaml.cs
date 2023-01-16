@@ -14,7 +14,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WordsEdit : ContentPage
     {
-        Group selectedGroup; Translate selectedTranslate;
+        Group selectedGroup; Translate selectedTranslate; FirebaseFirestore ff = new FirebaseFirestore();
 
         public WordsEdit(Group selectedGroup, Translate selectedTranslate)
         {
@@ -55,6 +55,7 @@ namespace Slovicka_APP
                 if (rows > 0)
                 {
                     DisplayAlert("Úspěch", "Překlad byl úspěšně změněn!", "Ok");
+                    ff.UpdateFirebaseUserGroups(false);
                     Navigation.PopAsync();
                 }
                 else
@@ -73,6 +74,7 @@ namespace Slovicka_APP
                 if (rows > 0)
                 {
                     DisplayAlert("Úspěch", "Překlad byl úspěšně smazán!", "Ok");
+                    ff.UpdateFirebaseUserGroups(false);
                     Navigation.PopAsync();
                 }
                 else

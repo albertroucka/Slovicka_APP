@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Slovicka_APP.UserRegistration">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="1" Text="Registrace" FontSize="30" TextColor="{StaticResource app_color_main}"/>
+            <Entry x:Name="ent_username" Grid.Row="2" Grid.Column="1" Placeholder="Zadajte uživatelské jméno*"/>
+            <Entry x:Name="ent_email" Grid.Row="3" Grid.Column="1" Placeholder="Zadajte e-mail*"/>
+            <Entry x:Name="ent_emailcheck" Grid.Row="4" Grid.Column="1" Placeholder="Zadajte znovu e-mail*"/>
+            <Entry x:Name="ent_password" Grid.Row="5" Grid.Column="1" Placeholder="Zadejte heslo*" IsPassword="True"/>
+            <Entry x:Name="ent_passwordcheck" Grid.Row="6" Grid.Column="1" Placeholder="Zadejte znovu heslo*" IsPassword="True"/>
+            <Label Grid.Row="7" Grid.Column="1" Text="*Registrací souhlasíte s podmínkami Slovicka_APP"/>
+            <Button x:Name="btn_confirm" Grid.Row="8" Grid.Column="1" Text="Registrovat" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_confirm_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

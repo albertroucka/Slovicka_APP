@@ -14,6 +14,8 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WordsAdd : ContentPage
     {
+        FirebaseFirestore ff = new FirebaseFirestore();
+
         public WordsAdd()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace Slovicka_APP
                     int rows = conn.Insert(translate);
                     if (rows > 0)
                     {
+                        ff.UpdateFirebaseUserGroups(false);
                         DisplayAlert("Úspěch", "Překlad byl úspěšně přidán!", "Ok");
                     }
                     else

@@ -14,7 +14,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GroupsEdit : ContentPage
     {
-        MainClass mainClass = new MainClass();
+        MainClass mainClass = new MainClass(); FirebaseFirestore ff = new FirebaseFirestore();
         Group selectedGroup; string originalGroup;
 
         public GroupsEdit(Group selectedGroup)
@@ -40,6 +40,7 @@ namespace Slovicka_APP
                 if (rows > 0)
                 {
                     DisplayAlert("Úspěch", "Statistiky byly úspěšně smazány!", "Ok");
+                    ff.UpdateFirebaseUserGroups(false);
                     Navigation.PopAsync();
                 }
                 else
@@ -113,6 +114,7 @@ namespace Slovicka_APP
                         if (rows > 0)
                         {
                             DisplayAlert("Úspěch", "Název skupiny byl úspěšně změněn!", "Ok");
+                            ff.UpdateFirebaseUserGroups(false);
                             Navigation.PopAsync();
                         }
                         else
@@ -150,6 +152,7 @@ namespace Slovicka_APP
                 if (rows > 0)
                 {
                     DisplayAlert("Úspěch", "Skupina byla úspěšně smazána!", "Ok");
+                    ff.UpdateFirebaseUserGroups(false);
                     Navigation.PopAsync();
                 }
                 else

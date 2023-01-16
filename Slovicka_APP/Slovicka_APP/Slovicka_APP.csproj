@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseAuthentication.net" Version="3.4.0" />
     <PackageReference Include="Plugin.CloudFirestore" Version="4.1.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
@@ -39,6 +40,12 @@
     </Compile>
     <Compile Update="GroupsAdd.xaml.cs">
       <DependentUpon>GroupsAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="UserForgottenPass.xaml.cs">
+      <DependentUpon>UserForgottenPass.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="UserRegistration.xaml.cs">
+      <DependentUpon>UserRegistration.xaml</DependentUpon>
     </Compile>
     <Compile Update="WordsEdit.xaml.cs">
       <DependentUpon>WordsEdit.xaml</DependentUpon>
@@ -72,6 +79,18 @@
     </EmbeddedResource>
     <EmbeddedResource Update="QRCodeScanner.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserForgottenPass.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserLogin.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserRegistration.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="WordsEdit.xaml">
       <Generator>MSBuild:Compile</Generator>

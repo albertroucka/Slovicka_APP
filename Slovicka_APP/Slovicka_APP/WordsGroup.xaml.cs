@@ -93,7 +93,7 @@ namespace Slovicka_APP
                     GroupShare groupShare = new GroupShare()
                     {
                         AppName = "Slovicka_APP",
-                        AppVersion = "0.5",
+                        AppVersion = "0.7",
                         GroupCode = "",
                         GroupName = selectedGroup.GroupName,
                         FirstLang = selectedGroup.FirstLang,
@@ -112,6 +112,7 @@ namespace Slovicka_APP
                         {
                             groupShare.GroupCode = ff.GenereteGroupShareCode();
                             UploadGroupShare(groupShare, selectedGroup);
+                            ff.UpdateFirebaseUserShareGroups();
                         }
                     }
                     else
