@@ -22,6 +22,16 @@ namespace Slovicka_APP
 
         private void btn_confirm_Clicked(object sender, EventArgs e)
         {
+            RegisterCheck();
+        }
+
+        private void ent_passwordcheck_Completed(object sender, EventArgs e)
+        {
+            RegisterCheck();
+        }
+
+        private void RegisterCheck()
+        {
             if (ent_username.Text != null && ent_email.Text != null && ent_emailcheck.Text != null && ent_password.Text != null && ent_passwordcheck.Text != null)
             {
                 if (ent_email.Text == ent_emailcheck.Text)

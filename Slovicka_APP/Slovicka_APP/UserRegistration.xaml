@@ -29,7 +29,7 @@
             <Entry x:Name="ent_email" Grid.Row="3" Grid.Column="1" Placeholder="Zadajte e-mail*"/>
             <Entry x:Name="ent_emailcheck" Grid.Row="4" Grid.Column="1" Placeholder="Zadajte znovu e-mail*"/>
             <Entry x:Name="ent_password" Grid.Row="5" Grid.Column="1" Placeholder="Zadejte heslo*" IsPassword="True"/>
-            <Entry x:Name="ent_passwordcheck" Grid.Row="6" Grid.Column="1" Placeholder="Zadejte znovu heslo*" IsPassword="True"/>
+            <Entry x:Name="ent_passwordcheck" Grid.Row="6" Grid.Column="1" Placeholder="Zadejte znovu heslo*" IsPassword="True" Completed="ent_passwordcheck_Completed"/>
             <Label Grid.Row="7" Grid.Column="1" Text="*Registrací souhlasíte s podmínkami Slovicka_APP"/>
             <Button x:Name="btn_confirm" Grid.Row="8" Grid.Column="1" Text="Registrovat" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_confirm_Clicked"/>
         </Grid>

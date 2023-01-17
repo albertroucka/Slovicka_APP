@@ -15,6 +15,6 @@ namespace Slovicka_APP.Models
         public string FirstLang { get; set; }
         public string SecondLang { get; set; }
         public int NumberOfExercises { get; set; }
-        public double SuccessRate { get; set; }
+        public int SuccessRate { get; set; }
     }
 }

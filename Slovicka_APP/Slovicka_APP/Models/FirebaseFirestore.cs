@@ -325,7 +325,7 @@ namespace Slovicka_APP.Models
                 string numberOfExercises = grp.Substring(0, i);
                 grp = grp.Remove(0, i + 1);
 
-                Group groupModel = new Group() { GroupName = groupName, FirstLang = firstLang, SecondLang = secondLang, SuccessRate = Convert.ToDouble(successRate), NumberOfExercises = Convert.ToInt32(numberOfExercises) };
+                Group groupModel = new Group() { GroupName = groupName, FirstLang = firstLang, SecondLang = secondLang, SuccessRate = Convert.ToInt32(successRate), NumberOfExercises = Convert.ToInt32(numberOfExercises) };
                 InsertNewGroup(groupModel, grp, update);
             }         
         }

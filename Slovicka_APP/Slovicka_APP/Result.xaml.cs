@@ -24,7 +24,8 @@ namespace Slovicka_APP
             lb_successRate.Text = $"Úspěšnost: {successRate}%";
             SetTrophies(successRate);
             UpdateGroupStats(selectedGroup, successRate);
-            cv_answers.ItemsSource = wrongAnswers;
+            if (wrongAnswers.Count == 0) { cv_answers.IsVisible = false; lb_answers.IsVisible = true; } 
+            else { cv_answers.ItemsSource = wrongAnswers; }
         }
 
         private void SetTrophies(double successRate)
@@ -67,7 +68,8 @@ namespace Slovicka_APP
         private void UpdateGroupStats(Group selectedGroup, double successRate)
         {
             selectedGroup.NumberOfExercises = selectedGroup.NumberOfExercises + 1;
-            selectedGroup.SuccessRate = (selectedGroup.SuccessRate * (selectedGroup.NumberOfExercises-1)  + successRate) / selectedGroup.NumberOfExercises;
+            double percentage = (selectedGroup.SuccessRate * (selectedGroup.NumberOfExercises-1)  + successRate) / selectedGroup.NumberOfExercises;
+            selectedGroup.SuccessRate = Convert.ToInt32(percentage);
 
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {

@@ -34,5 +34,10 @@ namespace Slovicka_APP
         {
             Navigation.PushAsync(new UserRegistration());
         }
+
+        private void ent_password_Completed(object sender, EventArgs e)
+        {
+            ff.FirebaseLogIn(ent_username.Text, ent_password.Text);
+        }
     }
 }

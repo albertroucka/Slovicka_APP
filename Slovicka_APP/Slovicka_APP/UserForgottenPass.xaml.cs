@@ -22,6 +22,16 @@ namespace Slovicka_APP
 
         private void btn_confirm_Clicked(object sender, EventArgs e)
         {
+            SendUserEmail();
+        }
+
+        private void ent_useremail_Completed(object sender, EventArgs e)
+        {
+            SendUserEmail();
+        }
+
+        private void SendUserEmail()
+        {
             string email = ent_useremail.Text;
             ff.FirebaseUserResetPass(email);
         }

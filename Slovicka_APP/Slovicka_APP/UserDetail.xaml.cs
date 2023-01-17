@@ -67,17 +67,26 @@ namespace Slovicka_APP
             else
             {
                 ent_name.IsVisible = false; lb_name.IsVisible = true; 
-                UpdateUserData();
+                string edit = ent_name.Text; lb_name.Text = edit;
+                UpdateUserData(edit);
                 btn_updateUserData.Text = "Upravit uživatele";
             }
         }
 
-        private void UpdateUserData()
+        private void ent_name_Completed(object sender, EventArgs e)
+        {
+            ent_name.IsVisible = false; lb_name.IsVisible = true;
+            string edit = ent_name.Text; lb_name.Text = edit;
+            UpdateUserData(edit);
+            btn_updateUserData.Text = "Upravit uživatele";
+        }
+
+        private void UpdateUserData(string edit)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 LocalUser user = mainClass.GetUser();
-                user.UserName = ent_name.Text;
+                user.UserName = edit;
 
                 if (user != null)
                 {
@@ -87,7 +96,7 @@ namespace Slovicka_APP
                     {
                         if (user.FirebaseId != null)
                         {
-                            FirebaseUser firebaseUser = new FirebaseUser() { FirebaseId = user.FirebaseId, UserName = ent_name.Text, UserEmail = user.UserEmail, NumberOfTrophies = user.NumberOfTrophies, NumberOfExercises = user.NumberOfExercises, NumberOfCreatedGroups = user.NumberOfCreatedGroups, NumberOfSharedGroups = user.NumberOfSharedGroups, RegistrationDate = user.RegistrationDate, AllGroups = user.AllGroups };
+                            FirebaseUser firebaseUser = new FirebaseUser() { FirebaseId = user.FirebaseId, UserName = edit, UserEmail = user.UserEmail, NumberOfTrophies = user.NumberOfTrophies, NumberOfExercises = user.NumberOfExercises, NumberOfCreatedGroups = user.NumberOfCreatedGroups, NumberOfSharedGroups = user.NumberOfSharedGroups, RegistrationDate = user.RegistrationDate, AllGroups = user.AllGroups };
                             ff.UpdateFirebaseUser(firebaseUser);
                             DisplayAlert("Úspěch", "Uživatel byl úspěšně aktualizován!", "Ok");
                         }

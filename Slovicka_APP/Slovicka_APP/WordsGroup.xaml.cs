@@ -24,7 +24,7 @@ namespace Slovicka_APP
             this.selectedGroup = selectedGroup;
             lb_groupName.Text = selectedGroup.GroupName;
             lb_numberOfExercises.Text = selectedGroup.NumberOfExercises.ToString();
-            lb_numberOfSuccessRate.Text = Math.Round(selectedGroup.SuccessRate).ToString() + "%";
+            lb_numberOfSuccessRate.Text = selectedGroup.SuccessRate.ToString() + "%";
         }
 
         protected override void OnAppearing()

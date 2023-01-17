@@ -25,7 +25,7 @@
 
             <Label Grid.Row="1" Grid.Column="1" Text="Přihlášení" FontSize="30" TextColor="{StaticResource app_color_main}"/>
             <Entry x:Name="ent_username" Grid.Row="2" Grid.Column="1" Placeholder="Uživatelský e-mail"/>
-            <Entry x:Name="ent_password" Grid.Row="3" Grid.Column="1" Placeholder="Heslo" IsPassword="True"/>
+            <Entry x:Name="ent_password" Grid.Row="3" Grid.Column="1" Placeholder="Heslo" IsPassword="True" Completed="ent_password_Completed"/>
             <Button x:Name="btn_confirm" Grid.Row="5" Grid.Column="1" Text="POTVRDIT" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_confirm_Clicked"/>
             <Label x:Name="lb_forgottenpass" Grid.Row="6" Grid.Column="1" Text="Zampomenuté heslo? Obnovte si ho!" HorizontalTextAlignment="Center" VerticalTextAlignment="End">
                 <Label.GestureRecognizers>
