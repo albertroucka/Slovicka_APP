@@ -22,7 +22,7 @@ namespace Slovicka_APP
             InitializeComponent();
             this.GameList = gameList;
             this.translate = translate;
-            CardsList = questionCards.GetRandomSequence(gameList);
+            this.CardsList = questionCards.GetRandomSequence(gameList, translate);
             Start();
         }   
 
@@ -34,14 +34,7 @@ namespace Slovicka_APP
             correctAnswer = trans.SecondWord;
             lb_groupName.Text = trans.GroupName;
             lb_count.Text = $"{i + 1}/{CardsList.Count}";
-            if (translate == false)
-            {
-                btn_card.Text = question;
-            }
-            else
-            {
-                btn_card.Text = correctAnswer;
-            }
+            btn_card.Text = question;
             UpdateUserTrophies();
         }
 
@@ -51,15 +44,17 @@ namespace Slovicka_APP
             {
                 btn_card.BackgroundColor = Color.FromHex("#FFFFFF");
                 btn_card.TextColor = Color.FromHex("#2196F3");
-                if (translate == false) { btn_card.Text = correctAnswer; }
-                else { btn_card.Text = question; }
+                //if (translate == true) { btn_card.Text = correctAnswer; }
+                //else { btn_card.Text = question; }
+                btn_card.Text = correctAnswer;
             }
             else
             {
                 btn_card.BackgroundColor = Color.FromHex("#2196F3");
                 btn_card.TextColor = Color.FromHex("#FFFFFF");
-                if (translate == false) { btn_card.Text = question; }
-                else { btn_card.Text = correctAnswer; }
+                //if (translate == true) { btn_card.Text = question; }
+                //else { btn_card.Text = correctAnswer; }
+                btn_card.Text = question;
             }
         }
 

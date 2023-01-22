@@ -23,14 +23,14 @@
             </Grid.ColumnDefinitions>
 
             <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="{StaticResource app_color_main}"/>
-            <Button x:Name="btn_account" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ImageSource="account.png" Text="???" FontSize="18" TextColor="{StaticResource app_color_third}" BackgroundColor="{StaticResource app_color_second}" HorizontalOptions="Start" VerticalOptions="StartAndExpand" CornerRadius="20" Margin="5" Clicked="btn_account_Clicked"/>
+            <Button x:Name="btn_account" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ImageSource="account_small.jpg" Text="???" FontSize="18" TextColor="{StaticResource app_color_third}" BackgroundColor="{StaticResource app_color_second}" HorizontalOptions="Start" VerticalOptions="StartAndExpand" CornerRadius="20" Margin="5" Clicked="btn_account_Clicked"/>
             <Button x:Name="btn_trophies" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ImageSource="trophy_small.png" Text="???" FontSize="18" TextColor="{StaticResource app_color_third}" BackgroundColor="{StaticResource app_color_second}" HorizontalOptions="End" VerticalOptions="Start" CornerRadius="20" Margin="5"/>
             <Label Grid.Row="1" Grid.Column="1" Text="S" TextColor="{StaticResource app_color_second}" FontSize="350" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,-110,0,0" />
             <Button x:Name="btn_practise" Grid.Row="3" Grid.Column="1" Text="Procvičení" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_practise_Clicked"/>
             <Button x:Name="btn_wordsAdd" Grid.Row="4" Grid.Column="1" Text="Seznam slov" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_wordsAdd_Clicked"/>
             <Button x:Name="btn_groupsAdd" Grid.Row="5" Grid.Column="1" Text="Seznam skupin" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_groupsAdd_Clicked"/>
             <Label Grid.Row="7" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Text="©Albert Roučka" TextColor="{StaticResource app_color_third}" HorizontalOptions="StartAndExpand" VerticalOptions="End" Margin="5"/>
-            <Label Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Text="ver. 0.7.1" TextColor="{StaticResource app_color_third}" HorizontalOptions="End" VerticalOptions="End" Margin="5"/>
+            <Label Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Text="ver. 0.8" TextColor="{StaticResource app_color_third}" HorizontalOptions="End" VerticalOptions="End" Margin="5"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

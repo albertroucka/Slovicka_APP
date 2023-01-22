@@ -125,7 +125,7 @@ namespace Slovicka_APP.Models
                         if (user.FirebaseId != null)
                         {
                             FirebaseUser firebaseUser = new FirebaseUser() { FirebaseId = user.FirebaseId, UserName = user.UserName, UserEmail = user.UserEmail, NumberOfTrophies = user.NumberOfTrophies, NumberOfExercises = user.NumberOfExercises, NumberOfCreatedGroups = user.NumberOfCreatedGroups, NumberOfSharedGroups = user.NumberOfSharedGroups, RegistrationDate = user.RegistrationDate, AllGroups = user.AllGroups };
-                            ff.UpdateFirebaseUser(firebaseUser);
+                            ff.UpdateFirebaseUser(firebaseUser, null);
                         }
                         return false;
                     }

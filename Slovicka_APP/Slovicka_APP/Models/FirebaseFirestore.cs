@@ -12,15 +12,22 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Android.Content.Res;
 using Android.Views;
+using Xamarin.Essentials;
 
 namespace Slovicka_APP.Models
 {
     public class FirebaseFirestore
     {
+        public bool CheckInternetConnection()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet) { return true; }
+            else { return false; }
+        }
 
         //Uživatelé a Firebase Auth
         string WebAPIkey = "AIzaSyDcNoIRjoK7vdlwK5_hJcCTjwon27x4nK8";
-        public async void FirebaseLogIn(string username, string password)
+        public async void FirebaseLogIn(string username, string password, ActivityIndicator ai_loading)
         {
             try
             {
@@ -40,6 +47,7 @@ namespace Slovicka_APP.Models
                 string err = ShowFirebaseError(e.Message, false);
                 await App.Current.MainPage.DisplayAlert("Chyba", err, "Ok");
             }
+            ai_loading.IsVisible = false;
         }
 
         private async void FirebaseGetUserData(string userAuthId)
@@ -72,7 +80,7 @@ namespace Slovicka_APP.Models
             }
         }
 
-        public async void FirebaseSignUp(string username, string email, string password)
+        public async void FirebaseSignUp(string username, string email, string password, ActivityIndicator ai_loading)
         {
             try
             {
@@ -82,7 +90,7 @@ namespace Slovicka_APP.Models
                 await auth.UpdateProfileAsync(username, "");
                 CreateFirebaseUser(username, email, auth.User.LocalId);
                 var test = authProvider.SendEmailVerificationAsync(getToken);
-                await App.Current.MainPage.DisplayAlert("Úspěch", "Registrace proběhla úspěšně!", "Ok");
+                await App.Current.MainPage.DisplayAlert("Úspěch", "Registrace proběhla úspěšně! Na zadaný e-mail byl odeslán e-mail s odkazem k ověření účtu", "Ok");
             }
             catch (FirebaseAuthException e)
             {
@@ -94,9 +102,10 @@ namespace Slovicka_APP.Models
                 string err = ShowFirebaseError(e.Message, true);
                 await App.Current.MainPage.DisplayAlert("Chyba", err, "Ok");
             }
+            ai_loading.IsVisible = false;
         }
 
-        public async void FirebaseUserLogout()
+        public async void FirebaseUserLogout(ActivityIndicator ai_loading)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
@@ -136,6 +145,7 @@ namespace Slovicka_APP.Models
                     }
                 }
             }
+            ai_loading.IsVisible = false;
             App.Current.MainPage.Navigation.PopAsync();
             App.Current.MainPage.Navigation.PopAsync();
             App.Current.MainPage.Navigation.PushAsync(new MainPage());
@@ -177,16 +187,21 @@ namespace Slovicka_APP.Models
             }
         }
 
-        public async void UpdateFirebaseUser(FirebaseUser firebaseUser)
+        public async void UpdateFirebaseUser(FirebaseUser firebaseUser, ActivityIndicator ai_loading)
         {
             await CrossCloudFirestore.Current
              .Instance
              .Collection("users")
              .Document(firebaseUser.FirebaseId)
              .UpdateAsync(firebaseUser);
+
+            if (ai_loading != null)
+            {
+                ai_loading.IsVisible = false;
+            }
         }
 
-        public async void DownloadFirebaseUserData()
+        public async void DownloadFirebaseUserData(Button btn_account, Button btn_trophies)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
@@ -209,13 +224,15 @@ namespace Slovicka_APP.Models
                         if (rows > 0)
                         {
                             SaveAllUsersGroups(firebaseUser.AllGroups, true, false);
+                            btn_account.Text = user.UserName;
+                            btn_trophies.Text = user.NumberOfTrophies.ToString();
                         }
                     }
                 }
             }
         }
 
-        public async void FirebaseUserResetPass(string email)
+        public async void FirebaseUserResetPass(string email, ActivityIndicator ai_loading)
         {
             try
             {
@@ -229,6 +246,7 @@ namespace Slovicka_APP.Models
                 string err = ShowFirebaseError(e.Message, false);
                 await App.Current.MainPage.DisplayAlert("Chyba", err, "Ok");
             }
+            ai_loading.IsVisible = false;
         }
 
         private string ShowFirebaseError(string error, bool registration)
@@ -240,6 +258,7 @@ namespace Slovicka_APP.Models
             else if (error.Contains("MISSING_PASSWORD")) { return "Zadejte heslo!"; }
             else if (error.Contains("INVALID_PASSWORD")) { return "Zadali jste nesprávné heslo!"; }
             else if (error.Contains("WEAK_PASSWORD")) { return "Heslo musí mít alespoň 6 znaků!"; }
+            else if (CheckInternetConnection() != true) { return "Chyba sítě, zkontrolujte své připojení k internetu!";  }
             else if (registration) { return "Při registraci došlo k chybě!"; }
             else { return "Při přihlašování došlo k chybě!"; }
         }

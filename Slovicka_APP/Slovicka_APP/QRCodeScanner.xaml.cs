@@ -138,7 +138,7 @@ namespace Slovicka_APP
 
         private void LoadFromFile_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Upozornění", "Tato funknce není zatím dostupná a bude přidána v následujícíh verzích", "Ok");
+            DisplayAlert("Upozornění", "Tato funknce není zatím dostupná a bude přidána v následujících verzích", "Ok");
         }
     }
 }

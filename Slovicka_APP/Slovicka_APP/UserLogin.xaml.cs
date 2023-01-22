@@ -22,7 +22,7 @@ namespace Slovicka_APP
 
         private void btn_confirm_Clicked(object sender, EventArgs e)
         {
-            ff.FirebaseLogIn(ent_username.Text, ent_password.Text);
+            LogInUser();
         }
 
         private void lb_forgottenpass_Tapped(object sender, EventArgs e)
@@ -37,7 +37,13 @@ namespace Slovicka_APP
 
         private void ent_password_Completed(object sender, EventArgs e)
         {
-            ff.FirebaseLogIn(ent_username.Text, ent_password.Text);
+            LogInUser();
+        }
+
+        private void LogInUser()
+        {
+            ai_loading.IsVisible = true;
+            ff.FirebaseLogIn(ent_username.Text, ent_password.Text, ai_loading);
         }
     }
 }

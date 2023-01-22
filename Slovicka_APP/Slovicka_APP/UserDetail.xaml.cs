@@ -32,13 +32,13 @@ namespace Slovicka_APP
                 var users = conn.Table<LocalUser>().ToList();
                 LocalUser user = users[1];
 
-                lb_name.Text = "Uživ. jméno: " + user.UserName;
-                lb_email.Text = "E-mail: " + user.UserEmail;
-                lb_numberOfTrophies.Text = "Získané poháry: " + user.NumberOfTrophies.ToString();
-                lb_numberOfExercises.Text = "Počet procvičení: " + user.NumberOfExercises.ToString();
-                lb_numberOfCreatedGroups.Text = "Vytvořeno skupin: " + user.NumberOfCreatedGroups.ToString();
-                lb_numberOfSharedGroups.Text = "Sdíleno skupin: " + user.NumberOfSharedGroups.ToString();
-                lb_registrationDate.Text = "Datum registrace: " + user.RegistrationDate.ToString("dd.MM.yyyy");
+                lb_name.Text = $"<b>Uživ. jméno: </b> {user.UserName}";
+                lb_email.Text = $"<b>E-mail: </b>" + user.UserEmail;
+                lb_numberOfTrophies.Text = $"<b>Získané poháry: </b>" + user.NumberOfTrophies.ToString();
+                lb_numberOfExercises.Text = $"<b>Počet procvičení: </b>" + user.NumberOfExercises.ToString();
+                lb_numberOfCreatedGroups.Text = $"<b>Vytvořeno skupin: </b>" + user.NumberOfCreatedGroups.ToString();
+                lb_numberOfSharedGroups.Text = $"<b>Sdíleno skupin: </b>" + user.NumberOfSharedGroups.ToString();
+                lb_registrationDate.Text = $"<b>Datum registrace: </b>" + user.RegistrationDate.ToString("dd.MM.yyyy");
 
                 ent_name.Text = user.UserName;
             }
@@ -46,8 +46,9 @@ namespace Slovicka_APP
 
         private void btn_logout_Clicked(object sender, EventArgs e)
         {
+            ai_loading.IsVisible = true;
             FirebaseFirestore ff = new FirebaseFirestore();
-            ff.FirebaseUserLogout();
+            ff.FirebaseUserLogout(ai_loading);
         }
 
         protected override bool OnBackButtonPressed()
@@ -96,8 +97,9 @@ namespace Slovicka_APP
                     {
                         if (user.FirebaseId != null)
                         {
+                            ai_loading.IsVisible = true;
                             FirebaseUser firebaseUser = new FirebaseUser() { FirebaseId = user.FirebaseId, UserName = edit, UserEmail = user.UserEmail, NumberOfTrophies = user.NumberOfTrophies, NumberOfExercises = user.NumberOfExercises, NumberOfCreatedGroups = user.NumberOfCreatedGroups, NumberOfSharedGroups = user.NumberOfSharedGroups, RegistrationDate = user.RegistrationDate, AllGroups = user.AllGroups };
-                            ff.UpdateFirebaseUser(firebaseUser);
+                            ff.UpdateFirebaseUser(firebaseUser, ai_loading);
                             DisplayAlert("Úspěch", "Uživatel byl úspěšně aktualizován!", "Ok");
                         }
                     }

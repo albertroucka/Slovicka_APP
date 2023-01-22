@@ -235,7 +235,7 @@ namespace Slovicka_APP.Models
 
     public class QuestionCards
     {
-        public List<Translate> GetRandomSequence(List<Translate> gameList)
+        public List<Translate> GetRandomSequence(List<Translate> gameList, bool translate)
         {
             List<Translate> CardsList = new List<Translate>();
             Random r = new Random(); int i; int x = 0; bool b = false;
@@ -248,7 +248,7 @@ namespace Slovicka_APP.Models
                 {
                     foreach (var item in CardsList)
                     {
-                        if (item.FirstWord == quest.FirstWord)
+                        if (item.FirstWord == quest.FirstWord || item.FirstWord == quest.SecondWord)
                         {
                             b = true;
                         }
@@ -256,13 +256,29 @@ namespace Slovicka_APP.Models
 
                     if (b == false)
                     {
-                        CardsList.Add(quest);
+                        if (translate)
+                        {
+                            Translate t = new Translate() { GroupName = quest.GroupName, FirstWord = quest.SecondWord, SecondWord = quest.FirstWord };
+                            CardsList.Add(t);
+                        }
+                        else
+                        {
+                            CardsList.Add(quest);
+                        }
                         x++;
                     }
                 }
                 else
                 {
-                    CardsList.Add(quest);
+                    if (translate)
+                    {
+                        Translate t = new Translate() { GroupName= quest.GroupName, FirstWord = quest.SecondWord, SecondWord = quest.FirstWord};
+                        CardsList.Add(t);
+                    }
+                    else
+                    {
+                        CardsList.Add(quest);
+                    }
                     x++;
                 }
             }

@@ -23,6 +23,8 @@ namespace Slovicka_APP
             InitializeComponent();
             this.selectedGroup = selectedGroup;
             lb_groupName.Text = selectedGroup.GroupName;
+            lb_firstLang.Text = selectedGroup.FirstLang;
+            lb_secondLang.Text = selectedGroup.SecondLang;
             lb_numberOfExercises.Text = selectedGroup.NumberOfExercises.ToString();
             lb_numberOfSuccessRate.Text = selectedGroup.SuccessRate.ToString() + "%";
         }
@@ -35,14 +37,14 @@ namespace Slovicka_APP
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 conn.CreateTable<Translate>(); int i = 0;
-                var posts = conn.Table<Translate>().ToList();
+                var translates = conn.Table<Translate>().ToList();
 
-                while (i < posts.Count)
+                while (i < translates.Count)
                 {
-                    var quest = posts[i];
+                    var quest = translates[i];
                     if (quest.GroupName == selectedGroup.GroupName)
                     {
-                        translatesList.Add(posts[i]);
+                        translatesList.Add(translates[i]);
                     }
                     i++;
                 }
@@ -59,6 +61,18 @@ namespace Slovicka_APP
             {
                 Navigation.PushAsync(new WordsEdit(selectedGroup, selectedPost));
             }
+        }
+
+        private void lb_firstLang_Tapped(object sender, EventArgs e)
+        {
+            List<Translate> sorted = translatesList.OrderBy(Translate => Translate.FirstWord).ToList();
+            cv_words.ItemsSource = sorted;
+        }
+
+        private void lb_secondLang_Tapped(object sender, EventArgs e)
+        {
+            List<Translate> sorted = translatesList.OrderBy(Translate => Translate.SecondWord).ToList();
+            cv_words.ItemsSource = sorted;
         }
 
         private void GoToQRCreatePage_Clicked(object sender, EventArgs e)
@@ -93,7 +107,7 @@ namespace Slovicka_APP
                     GroupShare groupShare = new GroupShare()
                     {
                         AppName = "Slovicka_APP",
-                        AppVersion = "0.7",
+                        AppVersion = "0.8",
                         GroupCode = "",
                         GroupName = selectedGroup.GroupName,
                         FirstLang = selectedGroup.FirstLang,

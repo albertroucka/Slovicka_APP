@@ -37,6 +37,8 @@
                     <TapGestureRecognizer Tapped="lb_register_Tapped"/>
                 </Label.GestureRecognizers>
             </Label>
+            
+            <ActivityIndicator x:Name="ai_loading" Grid.Row="3" Grid.Column="1" Color="{StaticResource app_color_main}" IsRunning="True" IsVisible="False"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

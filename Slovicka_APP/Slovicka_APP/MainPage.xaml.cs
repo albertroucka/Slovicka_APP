@@ -1,4 +1,5 @@
-﻿using Slovicka_APP.Models;
+﻿using Android.OS;
+using Slovicka_APP.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,8 @@ namespace Slovicka_APP
         public MainPage()
         {
             InitializeComponent();
-            CreateUserOnStart();
-            ff.DownloadFirebaseUserData();
+            CreateUserOnStart();           
+            ff.DownloadFirebaseUserData(btn_account, btn_trophies);
             SetValues();
         }
 

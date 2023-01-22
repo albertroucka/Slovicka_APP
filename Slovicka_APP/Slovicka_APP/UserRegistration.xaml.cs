@@ -38,7 +38,8 @@ namespace Slovicka_APP
                 {
                     if (ent_password.Text == ent_passwordcheck.Text)
                     {
-                        ff.FirebaseSignUp(ent_username.Text, ent_emailcheck.Text, ent_passwordcheck.Text);
+                        ai_loading.IsVisible = true;
+                        ff.FirebaseSignUp(ent_username.Text, ent_emailcheck.Text, ent_passwordcheck.Text, ai_loading);
                     }
                     else
                     {

@@ -32,7 +32,8 @@ namespace Slovicka_APP
             {
                 conn.CreateTable<Group>();
                 var groups = conn.Table<Group>().ToList();
-                lv_groups.ItemsSource = groups;
+                List<Group> sorted = groups.OrderBy(Group => Group.GroupName).ToList();
+                lv_groups.ItemsSource = sorted;
             }
         }
 

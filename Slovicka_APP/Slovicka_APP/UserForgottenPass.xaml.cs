@@ -32,8 +32,9 @@ namespace Slovicka_APP
 
         private void SendUserEmail()
         {
+            ai_loading.IsVisible = true;
             string email = ent_useremail.Text;
-            ff.FirebaseUserResetPass(email);
+            ff.FirebaseUserResetPass(email, ai_loading);
         }
     }
 }
