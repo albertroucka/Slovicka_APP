@@ -35,7 +35,7 @@ namespace Slovicka_APP.Models
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(username, password);
                 string getToken = auth.FirebaseToken;
                 string authId = auth.User.LocalId;
-                FirebaseGetUserData(authId);           
+                FirebaseGetUserData(authId, ai_loading);             
             }
             catch (FirebaseAuthException e)
             {
@@ -47,10 +47,9 @@ namespace Slovicka_APP.Models
                 string err = ShowFirebaseError(e.Message, false);
                 await App.Current.MainPage.DisplayAlert("Chyba", err, "Ok");
             }
-            ai_loading.IsVisible = false;
         }
 
-        private async void FirebaseGetUserData(string userAuthId)
+        private async void FirebaseGetUserData(string userAuthId, ActivityIndicator ai_loading)
         {
             var document = await CrossCloudFirestore.Current
                                         .Instance
@@ -72,6 +71,7 @@ namespace Slovicka_APP.Models
                     if (rows > 0)
                     {
                         SaveAllUsersGroups(firebaseUser.AllGroups, false, false);
+                        ai_loading.IsVisible = false;
                         App.Current.MainPage.Navigation.PopAsync();
                         App.Current.MainPage.Navigation.PushAsync(new UserDetail());
                         App.Current.MainPage.DisplayAlert("Úspěch", "Uživatel byl úspěšně přihlášen!", "Ok");

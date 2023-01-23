@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <Frame x:Name="frame" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="7" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
-            <Label x:Name="lb_groupName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Text="Název skupiny" FontSize="30" TextColor="{StaticResource app_color_second}" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label x:Name="lb_groupName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Text="Název skupiny" FontSize="30" TextColor="{StaticResource app_color_second}" HorizontalOptions="Center" VerticalOptions="Center" Margin="20,0,0,0"/>
             <Frame x:Name="frame0" Grid.Row="2" Grid.Column="2" BackgroundColor="{StaticResource app_color_second}" CornerRadius="20" />
             <Label x:Name="lb_numberOfTranslates" Grid.Row="2" Grid.Column="2" Text="0" FontSize="28" TextColor="{StaticResource app_color_third}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,30" />
             <Label x:Name="lb_numberOfTranslates_text" Grid.Row="2" Grid.Column="2" Text="počet překladů" FontSize="13" TextColor="{StaticResource app_color_third}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,30,0,0" />

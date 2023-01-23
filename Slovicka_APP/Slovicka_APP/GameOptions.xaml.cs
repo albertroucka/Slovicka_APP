@@ -43,9 +43,12 @@ namespace Slovicka_APP
             lb_points.Text = "Body: " + Convert.ToString(points);
             QuestionABC question = questions.GetNewQuestion(GameList, translate);
             lb_first_lang.Text = question.QuestionText;
-            btn_A.Text = question.OptionA;
+            btn_A.Text = question.OptionA; 
             btn_B.Text = question.OptionB;
             btn_C.Text = question.OptionC;
+            if (btn_A.Text.Length > 18) { btn_A.FontSize = 17; } else { btn_A.FontSize = 20; }
+            if (btn_B.Text.Length > 18) { btn_B.FontSize = 17; } else { btn_B.FontSize = 20; }
+            if (btn_C.Text.Length > 18) { btn_C.FontSize = 17; } else { btn_C.FontSize = 20; }
             this.correctAnswer = question.CorrectAnswer;
         }
 
