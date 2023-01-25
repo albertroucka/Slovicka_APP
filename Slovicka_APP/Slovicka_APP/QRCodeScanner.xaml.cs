@@ -56,7 +56,7 @@ namespace Slovicka_APP
             {
                 QRCodeScan.IsScanning = false;
                 string QRCode = result.ToString();
-                string stringResult = Encoding.Unicode.GetString(Convert.FromBase64String(QRCode));
+                string stringResult = Encoding.UTF8.GetString(Convert.FromBase64String(QRCode));
 
                 int i = stringResult.IndexOf(";");
                 string appName = stringResult.Substring(0, i);
@@ -101,7 +101,7 @@ namespace Slovicka_APP
             {
                 var data = document.ToObject<GroupShare>();
 
-                if (data.AppName == "Slovicka_APP")
+                if (data.AppName == "Slovicka_APP" || data.AppName == "Slovicka_WEB")
                 {
                     try
                     {
@@ -127,7 +127,7 @@ namespace Slovicka_APP
                 }
                 else
                 {
-                    DisplayAlert("Chyba", "Při zpracování skupiny došlo k chybě!", "Ok");
+                    DisplayAlert("Chyba", "Skupina má špatný formát!", "Ok");
                 }
             }
             else

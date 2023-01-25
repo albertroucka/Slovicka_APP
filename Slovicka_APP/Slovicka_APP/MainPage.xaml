@@ -30,7 +30,7 @@
             <Button x:Name="btn_wordsAdd" Grid.Row="4" Grid.Column="1" Text="Seznam slov" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_wordsAdd_Clicked"/>
             <Button x:Name="btn_groupsAdd" Grid.Row="5" Grid.Column="1" Text="Seznam skupin" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_groupsAdd_Clicked"/>
             <Label Grid.Row="7" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Text="©Albert Roučka" TextColor="{StaticResource app_color_third}" HorizontalOptions="StartAndExpand" VerticalOptions="End" Margin="5"/>
-            <Label Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Text="ver. 0.8" TextColor="{StaticResource app_color_third}" HorizontalOptions="End" VerticalOptions="End" Margin="5"/>
+            <Label Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Text="ver. 0.8.1" TextColor="{StaticResource app_color_third}" HorizontalOptions="End" VerticalOptions="End" Margin="5"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
