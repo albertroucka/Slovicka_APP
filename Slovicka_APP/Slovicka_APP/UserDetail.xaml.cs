@@ -1,4 +1,5 @@
-﻿using Slovicka_APP.Models;
+﻿using Firebase.Auth;
+using Slovicka_APP.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace Slovicka_APP
             else
             {
                 ent_name.IsVisible = false; lb_name.IsVisible = true; 
-                string edit = ent_name.Text; lb_name.Text = edit;
+                string edit = ent_name.Text; lb_name.Text = $"<b>Uživ. jméno: </b> {edit}";
                 UpdateUserData(edit);
                 btn_updateUserData.Text = "Upravit uživatele";
             }
@@ -77,7 +78,7 @@ namespace Slovicka_APP
         private void ent_name_Completed(object sender, EventArgs e)
         {
             ent_name.IsVisible = false; lb_name.IsVisible = true;
-            string edit = ent_name.Text; lb_name.Text = edit;
+            string edit = ent_name.Text; lb_name.Text = $"<b>Uživ. jméno: </b> {edit}";
             UpdateUserData(edit);
             btn_updateUserData.Text = "Upravit uživatele";
         }

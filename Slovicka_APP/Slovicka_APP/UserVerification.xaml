@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Slovicka_APP.UserVerification">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="1" Text="Ověření účtu" FontSize="30" TextColor="{StaticResource app_color_main}"/>
+            <Label x:Name="lb_info" Grid.Row="2" Grid.Column="1" Text="Aplikace vyžaduje ověření vašeho uživatelského účtu. Do vaší e-mailové schránky byl odeslán e-mail s odkazem, kterým účet ověříte. Poté klikněte na tlačítko pokračovat a budete přihlášeni"/>
+            <Button x:Name="btn_confirm" Grid.Row="4" Grid.Column="1" Text="POKRAČOVAT" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,0,35,0" Clicked="btn_confirm_Clicked"/>
+            <ActivityIndicator x:Name="ai_loading" Grid.Row="3" Grid.Column="1" Color="{StaticResource app_color_main}" IsRunning="True" IsVisible="False"/>
+        </Grid>
+     </ContentPage.Content>
+</ContentPage>

@@ -26,35 +26,45 @@ namespace Slovicka_APP.Models
         }
 
         //Uživatelé a Firebase Auth
-        string WebAPIkey = "AIzaSyDcNoIRjoK7vdlwK5_hJcCTjwon27x4nK8";
+        public string GetFirebaseWebAPIkey()
+        {
+            string WebAPIkey = "AIzaSyDcNoIRjoK7vdlwK5_hJcCTjwon27x4nK8";
+            return WebAPIkey;
+        }
+
+        //string WebAPIkey = "AIzaSyDcNoIRjoK7vdlwK5_hJcCTjwon27x4nK8";
         public async void FirebaseLogIn(string username, string password, ActivityIndicator ai_loading)
         {
             try
             {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIkey));
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(GetFirebaseWebAPIkey()));
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(username, password);
                 string getToken = auth.FirebaseToken;
                 string authId = auth.User.LocalId;
-                FirebaseGetUserData(authId, ai_loading);             
+                await auth.RefreshUserDetails();
+                bool verify = auth.User.IsEmailVerified;
+                FirebaseGetUserData(authProvider, auth, verify, password, ai_loading);             
             }
             catch (FirebaseAuthException e)
             {
+                ai_loading.IsVisible = false;
                 string err = ShowFirebaseError(e.Message, false);
                 await App.Current.MainPage.DisplayAlert("Chyba", err, "Ok");
             }
             catch (Exception e)
             {
+                ai_loading.IsVisible = false;
                 string err = ShowFirebaseError(e.Message, false);
                 await App.Current.MainPage.DisplayAlert("Chyba", err, "Ok");
             }
         }
 
-        private async void FirebaseGetUserData(string userAuthId, ActivityIndicator ai_loading)
+        private async void FirebaseGetUserData(FirebaseAuthProvider authProvider, FirebaseAuthLink auth, bool verify, string password, ActivityIndicator ai_loading)
         {
             var document = await CrossCloudFirestore.Current
                                         .Instance
                                         .Collection("users")
-                                        .Document(userAuthId)
+                                        .Document(auth.User.LocalId)
                                         .GetAsync();
 
             if (document.Exists)
@@ -72,9 +82,17 @@ namespace Slovicka_APP.Models
                     {
                         SaveAllUsersGroups(firebaseUser.AllGroups, false, false);
                         ai_loading.IsVisible = false;
-                        App.Current.MainPage.Navigation.PopAsync();
-                        App.Current.MainPage.Navigation.PushAsync(new UserDetail());
-                        App.Current.MainPage.DisplayAlert("Úspěch", "Uživatel byl úspěšně přihlášen!", "Ok");
+                        if (verify)
+                        {
+                            App.Current.MainPage.Navigation.PopAsync();
+                            App.Current.MainPage.Navigation.PushAsync(new UserDetail());
+                            App.Current.MainPage.DisplayAlert("Úspěch", "Uživatel byl úspěšně přihlášen!", "Ok");
+                        }
+                        else
+                        {
+                            App.Current.MainPage.Navigation.PopAsync();
+                            App.Current.MainPage.Navigation.PushAsync(new UserVerification(authProvider, auth, password));
+                        }
                     }
                 }
             }
@@ -84,12 +102,11 @@ namespace Slovicka_APP.Models
         {
             try
             {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIkey));
-                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
-                string getToken = auth.FirebaseToken; 
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(GetFirebaseWebAPIkey()));
+                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password, username, true);
                 await auth.UpdateProfileAsync(username, "");
-                CreateFirebaseUser(username, email, auth.User.LocalId);
-                var test = authProvider.SendEmailVerificationAsync(getToken);
+                CreateFirebaseUser(username, email, password, authProvider, auth);
+                //FirebaseLogIn(username, password, ai_loading);
                 await App.Current.MainPage.DisplayAlert("Úspěch", "Registrace proběhla úspěšně! Na zadaný e-mail byl odeslán e-mail s odkazem k ověření účtu", "Ok");
             }
             catch (FirebaseAuthException e)
@@ -145,18 +162,22 @@ namespace Slovicka_APP.Models
                     }
                 }
             }
-            ai_loading.IsVisible = false;
-            App.Current.MainPage.Navigation.PopAsync();
-            App.Current.MainPage.Navigation.PopAsync();
-            App.Current.MainPage.Navigation.PushAsync(new MainPage());
+
+            if (ai_loading != null)
+            {
+                ai_loading.IsVisible = false;
+                App.Current.MainPage.Navigation.PopAsync();
+                App.Current.MainPage.Navigation.PopAsync();
+                App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            }
         }
 
         //Uživatel ve FirebaseFirestore
-        private async void CreateFirebaseUser(string username, string email, string localId)
+        private async void CreateFirebaseUser(string username, string email, string password, FirebaseAuthProvider authProvider, FirebaseAuthLink auth)
         {
             FirebaseUser firebaseUser = new FirebaseUser()
             {
-                FirebaseId = localId,
+                FirebaseId = auth.User.LocalId,
                 UserName = username,
                 UserEmail = email,
                 NumberOfTrophies = 0,
@@ -170,7 +191,7 @@ namespace Slovicka_APP.Models
             await CrossCloudFirestore.Current
                          .Instance
                          .Collection("users")
-                         .Document(localId)
+                         .Document(auth.User.LocalId)
                          .SetAsync(firebaseUser);
 
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -182,7 +203,7 @@ namespace Slovicka_APP.Models
                 if (rows > 0)
                 {
                     await App.Current.MainPage.Navigation.PopAsync();
-                    await App.Current.MainPage.Navigation.PushAsync(new UserDetail());
+                    await App.Current.MainPage.Navigation.PushAsync(new UserVerification(authProvider, auth, password));
                 }
             }
         }
@@ -236,7 +257,7 @@ namespace Slovicka_APP.Models
         {
             try
             {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIkey));
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(GetFirebaseWebAPIkey()));
                 await authProvider.SendPasswordResetEmailAsync(email);
                 await App.Current.MainPage.Navigation.PopAsync();
                 await App.Current.MainPage.DisplayAlert("Úspěch", "E-mail s odkazem pro obnovu hesla byl úspěšně odeslán!", "Ok");

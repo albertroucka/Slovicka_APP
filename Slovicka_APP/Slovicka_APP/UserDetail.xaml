@@ -9,7 +9,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="120"/>
                 <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="26"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
@@ -27,9 +27,9 @@
 
             <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" BackgroundColor="{StaticResource app_color_main}"/>
             <Image x:Name="img_profile" Grid.Row="1" Grid.Column="1" Source="account.jpg" Margin="0,0,0,5"/>
-            <Label x:Name="lb_name" Grid.Row="2" Grid.Column="1" Text="Uživ. jméno: X" FontSize="20" TextType="Html"/>
+            <Label x:Name="lb_name" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Text="Uživ. jméno: X" FontSize="20" TextType="Html" MaxLines="1"/>
             <Entry x:Name="ent_name" Grid.Row="2" Grid.Column="1" IsVisible="false" Completed="ent_name_Completed" Margin="-5,-10,0,-5"/>
-            <Label x:Name="lb_email" Grid.Row="3" Grid.Column="1" Text="E-mail: X@X.X" FontSize="20" TextType="Html"/>
+            <Label x:Name="lb_email" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="E-mail: X@X.X" FontSize="20" TextType="Html" Margin="0,0,10,0"/>
             <Label x:Name="lb_numberOfTrophies" Grid.Row="4" Grid.Column="1" Text="Získané poháry: X" FontSize="20" TextType="Html"/>
             <Label x:Name="lb_numberOfExercises" Grid.Row="5" Grid.Column="1" Text="Počet procvičení: X" FontSize="20" TextType="Html"/>
             <Label x:Name="lb_numberOfCreatedGroups" Grid.Row="6" Grid.Column="1" Text="Vytvořeno skupin: X" FontSize="20" TextType="Html"/>

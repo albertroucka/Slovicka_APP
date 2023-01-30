@@ -92,7 +92,9 @@ namespace Slovicka_APP
 
         protected override bool OnBackButtonPressed()
         {
-            Navigation.PushAsync(new Options());
+            //Navigation.PushAsync(new Options());
+            Navigation.PopAsync();
+            Navigation.PopAsync();
             return true;
         }
     }

@@ -4,11 +4,14 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZXing.QrCode.Internal;
 
 namespace Slovicka_APP
 {
@@ -26,7 +29,7 @@ namespace Slovicka_APP
         {
             string groupCode = ent_groupCode.Text.ToUpper();
 
-             if (groupCode == null || groupCode.Length != 6)
+            if (groupCode == null || groupCode.Length != 6)
             {
                 DisplayAlert("Chyba", "Zadali jste špatný formát kódu!", "Ok");
             }
@@ -56,36 +59,7 @@ namespace Slovicka_APP
             {
                 QRCodeScan.IsScanning = false;
                 string QRCode = result.ToString();
-                string stringResult = Encoding.UTF8.GetString(Convert.FromBase64String(QRCode));
-
-                int i = stringResult.IndexOf(";");
-                string appName = stringResult.Substring(0, i);
-                stringResult = stringResult.Remove(0, i + 1);
-
-                i = stringResult.IndexOf(";");
-                string appVersion = stringResult.Substring(1, i - 1);
-                appVersion = appVersion.Replace("AppVersion: ", "");
-                stringResult = stringResult.Remove(0, i + 1);
-
-                i = stringResult.IndexOf(";");
-                string groupCode = stringResult.Substring(1, i - 1);
-                groupCode = groupCode.Replace("GroupCode: ", "");
-                stringResult = stringResult.Remove(0, i + 1);
-
-                i = stringResult.IndexOf(";");
-                string groupName = stringResult.Substring(1, i - 1);
-                groupName = groupName.Replace("GroupName: ", "");
-                stringResult = stringResult.Remove(0, i + 1);
-
-
-                if (mainClass.CheckInternetConnection())
-                {
-                    CheckGroupShareCode(groupCode);
-                }
-                else
-                {
-                    DisplayAlert("Chyba", "Nejste připojeni k internetu!", "Ok");
-                }
+                ReadQRCode(QRCode);
             });
         }
 
@@ -136,9 +110,70 @@ namespace Slovicka_APP
             }
         }
 
-        private void LoadFromFile_Clicked(object sender, EventArgs e)
+        private async void LoadFromFile_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Upozornění", "Tato funknce není zatím dostupná a bude přidána v následujících verzích", "Ok");
+            //DisplayAlert("Upozornění", "Tato funknce není zatím dostupná a bude přidána v následujících verzích", "Ok");
+
+            FileResult file = await FilePicker.PickAsync(new PickOptions
+            {
+                FileTypes = FilePickerFileType.Images,
+                PickerTitle = "Vyberte soubor s QR kódem"
+            });
+
+            if (file != null)
+            {
+                Stream stream = await file.OpenReadAsync();
+                byte[] bytes = new byte[stream.Length];
+                stream.Read(bytes, 0, bytes.Length);
+                stream.Seek(0, SeekOrigin.Begin);
+                List<GoogleVisionBarCodeScanner.BarcodeResult> obj = await GoogleVisionBarCodeScanner.Methods.ScanFromImage(bytes);
+
+                if (obj.Count > 0 && obj[0] != null)
+                {
+                    string QRCode = obj[0].DisplayValue;
+                    ReadQRCode(QRCode);
+                    //await DisplayAlert("Úspěch", "QR byl úspěšně rozpoznán!", "Ok");
+                }
+                else
+                {
+                    //await Navigation.PushAsync(new GroupsOptions());
+                    await DisplayAlert("Chyba", "QR kód nebyl nalezen!", "Ok");
+                }
+            }
+        }
+
+        private void ReadQRCode(string QRCode)
+        {
+            string stringResult = Encoding.UTF8.GetString(Convert.FromBase64String(QRCode));
+
+            int i = stringResult.IndexOf(";");
+            string appName = stringResult.Substring(0, i);
+            stringResult = stringResult.Remove(0, i + 1);
+
+            i = stringResult.IndexOf(";");
+            string appVersion = stringResult.Substring(1, i - 1);
+            appVersion = appVersion.Replace("AppVersion: ", "");
+            stringResult = stringResult.Remove(0, i + 1);
+
+            i = stringResult.IndexOf(";");
+            string groupCode = stringResult.Substring(1, i - 1);
+            groupCode = groupCode.Replace("GroupCode: ", "");
+            stringResult = stringResult.Remove(0, i + 1);
+
+            i = stringResult.IndexOf(";");
+            string groupName = stringResult.Substring(1, i - 1);
+            groupName = groupName.Replace("GroupName: ", "");
+            stringResult = stringResult.Remove(0, i + 1);
+
+
+            if (mainClass.CheckInternetConnection())
+            {
+                CheckGroupShareCode(groupCode);
+            }
+            else
+            {
+                DisplayAlert("Chyba", "Nejste připojeni k internetu!", "Ok");
+            }
         }
     }
 }

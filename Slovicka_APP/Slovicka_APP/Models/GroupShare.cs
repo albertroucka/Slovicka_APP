@@ -13,5 +13,6 @@ namespace Slovicka_APP.Models
         public string FirstLang { get; set; }
         public string SecondLang { get; set; }
         public string Translates { get; set; }
+        public bool GroupAccess { get; set; }
     }
 }

@@ -107,12 +107,13 @@ namespace Slovicka_APP
                     GroupShare groupShare = new GroupShare()
                     {
                         AppName = "Slovicka_APP",
-                        AppVersion = "0.8",
+                        AppVersion = "1.0",
                         GroupCode = "",
                         GroupName = selectedGroup.GroupName,
                         FirstLang = selectedGroup.FirstLang,
                         SecondLang = selectedGroup.SecondLang,
-                        Translates = translates
+                        Translates = translates,
+                        GroupAccess = false
                     };
 
                     if (mainClass.CheckInternetConnection())
