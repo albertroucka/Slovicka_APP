@@ -14,7 +14,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WordsAdd : ContentPage
     {
-        FirebaseFirestore ff = new FirebaseFirestore();
+        FirebaseFirestore ff = new FirebaseFirestore(); MainClass mainClass = new MainClass();
 
         public WordsAdd()
         {
@@ -37,7 +37,19 @@ namespace Slovicka_APP
 
         private void btn_save_Clicked(object sender, EventArgs e)
         {
-            if (pk_group.SelectedItem != null)
+            if (pk_group.SelectedItem == null)
+            {
+                DisplayAlert("Chyba", "Musíte vybrat skupinu!", "Ok");
+            }
+            else if (firstWord.Text == null || secondWord.Text == null)
+            {
+                DisplayAlert("Chyba", "Pole slova nebo překladu je prázdné!", "Ok");
+            }
+            else if (mainClass.CheckForbiddenChars(firstWord.Text) || mainClass.CheckForbiddenChars(secondWord.Text))
+            {
+                DisplayAlert("Chyba", "Slovo nebo překlad obsahuje zakázané znaky (;:+=)!", "Ok");
+            }
+            else
             {
                 int i = pk_group.SelectedIndex;
                 string groupname = pk_group.Items[i];
@@ -61,11 +73,6 @@ namespace Slovicka_APP
                 firstWord.Text = string.Empty;
                 secondWord.Text = string.Empty;
             }
-            else
-            {
-                DisplayAlert("Chyba", "Musíte vybrat skupinu!", "Ok");
-            }
-
         }
 
         private void lv_groups_ItemSelected(object sender, SelectedItemChangedEventArgs e)

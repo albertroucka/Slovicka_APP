@@ -79,61 +79,61 @@ namespace Slovicka_APP
         {
             if (translatesList.Count() > 0)
             {
-                bool bannedChars = false;
+                //Nemělo by nikdy nastat
+                /*bool bannedChars = false;
                 foreach (var item in translatesList)
                 {
-                    if (item.FirstWord.Contains(";") || item.SecondWord.Contains(";") || item.FirstWord.Contains(":") || item.SecondWord.Contains(":") || item.FirstWord.Contains("-") || item.SecondWord.Contains("-") || item.FirstWord.Contains("+") || item.SecondWord.Contains("+"))
+                    if (mainClass.CheckForbiddenChars(item.FirstWord) || mainClass.CheckForbiddenChars(item.SecondWord))
                     {
                         bannedChars = true;
+                        break;
                     }
                 }
 
                 if (bannedChars)
                 {
-                    DisplayAlert("Chyba!", "Skupina obsahuje nepovolené znaky (;:-+)!", "Ok");
+                    DisplayAlert("Chyba!", "Skupina obsahuje zakázané znaky (;:+=)!", "Ok");
                     Navigation.PopAsync();
-                }
-                else
+                }*/
+
+                string translates = string.Empty;
+                foreach (var item in translatesList)
                 {
-                    string translates = string.Empty;
-                    foreach (var item in translatesList)
-                    {
-                        string s = $"{item.FirstWord}-{item.SecondWord}";
-                        translates = translates + " " + s + " +";
-                    }
-                    translates = translates.Remove(0,1);
-                    translates = translates.Remove(translates.Length - 2);
+                    string s = $"{item.FirstWord}={item.SecondWord}";
+                    translates = translates + " " + s + " +";
+                }
+                translates = translates.Remove(0, 1);
+                translates = translates.Remove(translates.Length - 2);
 
-                    GroupShare groupShare = new GroupShare()
-                    {
-                        AppName = "Slovicka_APP",
-                        AppVersion = "1.0",
-                        GroupCode = "",
-                        GroupName = selectedGroup.GroupName,
-                        FirstLang = selectedGroup.FirstLang,
-                        SecondLang = selectedGroup.SecondLang,
-                        Translates = translates,
-                        GroupAccess = false
-                    };
+                GroupShare groupShare = new GroupShare()
+                {
+                    AppName = "Slovicka_APP",
+                    AppVersion = "1.0",
+                    GroupCode = "",
+                    GroupName = selectedGroup.GroupName,
+                    FirstLang = selectedGroup.FirstLang,
+                    SecondLang = selectedGroup.SecondLang,
+                    Translates = translates,
+                    GroupAccess = false
+                };
 
-                    if (mainClass.CheckInternetConnection())
+                if (ff.CheckInternetConnection())
+                {
+                    if (selectedGroup.GroupCode != null)
                     {
-                        if (selectedGroup.GroupCode != null)
-                        {
-                            groupShare.GroupCode = selectedGroup.GroupCode;
-                            UpdateGroupShare(groupShare);
-                        }
-                        else
-                        {
-                            groupShare.GroupCode = ff.GenereteGroupShareCode();
-                            UploadGroupShare(groupShare, selectedGroup);
-                            ff.UpdateFirebaseUserShareGroups();
-                        }
+                        groupShare.GroupCode = selectedGroup.GroupCode;
+                        UpdateGroupShare(groupShare);
                     }
                     else
                     {
-                        DisplayAlert("Chyba", "Nejste připojeni k internetu!", "Ok");
-                    }                 
+                        groupShare.GroupCode = ff.GenereteGroupShareCode();
+                        UploadGroupShare(groupShare, selectedGroup);
+                        ff.UpdateFirebaseUserShareGroups();
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Chyba", "Nejste připojeni k internetu!", "Ok");
                 }
             }
             else

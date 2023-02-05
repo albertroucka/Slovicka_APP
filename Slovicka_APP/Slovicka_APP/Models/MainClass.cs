@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Android.Content.ClipData;
 
 namespace Slovicka_APP.Models
 {
@@ -78,11 +79,9 @@ namespace Slovicka_APP.Models
             }
         }
 
-        public bool CheckInternetConnection()
+        public bool CheckForbiddenChars(string str)
         {
-            var current = Connectivity.NetworkAccess;
-
-            if (current == NetworkAccess.Internet)
+            if (str.Contains(";") || str.Contains(":") || str.Contains("+") || str.Contains("="))
             {
                 return true;
             }
@@ -107,13 +106,11 @@ namespace Slovicka_APP.Models
                 App.Current.Resources["app_color_answer"] = Color.FromHex("#FFFFFF");
             }
         }
-
         public bool UpdateUserStats(int trophiesCount)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 LocalUser user = GetUser();
-
                 if (user != null)
                 {
                     user.NumberOfTrophies = user.NumberOfTrophies + trophiesCount;

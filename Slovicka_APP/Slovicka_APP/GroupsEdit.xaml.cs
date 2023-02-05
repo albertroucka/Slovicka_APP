@@ -52,82 +52,93 @@ namespace Slovicka_APP
 
         private void btn_update_Clicked(object sender, EventArgs e)
         {
-            selectedGroup.GroupName = ent_groupName.Text;
-
-            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            if (ent_groupName.Text == null)
             {
-                conn.CreateTable<Group>(); int i = 0; bool b = false;
-                var groups = conn.Table<Group>().ToList();
+                DisplayAlert("Chyba", "Zadejte název skupiny!", "Ok");
+            }
+            else if (mainClass.CheckForbiddenChars(ent_groupName.Text))
+            {
+                DisplayAlert("Chyba", "Název skupiny obsahuje zakázané znaky (;:+=)!", "Ok");
+            }
+            else
+            {
+                selectedGroup.GroupName = ent_groupName.Text;
 
-                if (selectedGroup.GroupName != originalGroup)
+                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
                 {
-                    while (i < groups.Count)
+                    conn.CreateTable<Group>(); int i = 0; bool b = false;
+                    var groups = conn.Table<Group>().ToList();
+
+                    if (selectedGroup.GroupName != originalGroup)
                     {
-                        var quest = groups[i];
-                        if (quest.GroupName == selectedGroup.GroupName)
+                        while (i < groups.Count)
                         {
-                            b = true;
-                            break;
-                        }
-                        i++;
-                    }
-                }
-
-                if (pk_firstLang.SelectedItem != null)
-                {
-                    int index = pk_firstLang.SelectedIndex;
-                    string FirstLang = pk_firstLang.Items[index];
-                    selectedGroup.FirstLang = FirstLang;
-                }
-
-                if (pk_secondLang.SelectedItem != null)
-                {
-                    int index = pk_secondLang.SelectedIndex;
-                    string SecondLang = pk_secondLang.Items[index];
-                    selectedGroup.SecondLang = SecondLang;
-                }
-
-                if (selectedGroup.FirstLang == selectedGroup.SecondLang)
-                {
-                    DisplayAlert("Chyba", "Musíte vybrat dva různé jazyky překladu!", "Ok");
-                }
-                else
-                {
-                    if (b == false)
-                    {
-                        int rows = conn.Update(selectedGroup);
-
-                        conn.CreateTable<Translate>();
-                        var posts = conn.Table<Translate>().ToList();
-                        i = 0;
-                        while (i < posts.Count)
-                        {
-                            var quest = posts[i];
-                            if (quest.GroupName == originalGroup)
+                            var quest = groups[i];
+                            if (quest.GroupName == selectedGroup.GroupName)
                             {
-                                quest.GroupName = selectedGroup.GroupName;
-                                rows = conn.Update(quest);
+                                b = true;
+                                break;
                             }
                             i++;
                         }
+                    }
 
-                        if (rows > 0)
-                        {
-                            DisplayAlert("Úspěch", "Název skupiny byl úspěšně změněn!", "Ok");
-                            ff.UpdateFirebaseUserGroups(false);
-                            Navigation.PopAsync();
-                        }
-                        else
-                        {
-                            DisplayAlert("Chyba", "Název skupiny se nepovedlo změnit!", "Ok");
-                        }
+                    if (pk_firstLang.SelectedItem != null)
+                    {
+                        int index = pk_firstLang.SelectedIndex;
+                        string FirstLang = pk_firstLang.Items[index];
+                        selectedGroup.FirstLang = FirstLang;
+                    }
+
+                    if (pk_secondLang.SelectedItem != null)
+                    {
+                        int index = pk_secondLang.SelectedIndex;
+                        string SecondLang = pk_secondLang.Items[index];
+                        selectedGroup.SecondLang = SecondLang;
+                    }
+
+                    if (selectedGroup.FirstLang == selectedGroup.SecondLang)
+                    {
+                        DisplayAlert("Chyba", "Musíte vybrat dva různé jazyky překladu!", "Ok");
                     }
                     else
                     {
-                        DisplayAlert("Chyba", "Skupina se stejným názvem již existuje!", "Ok");
+                        if (b == false)
+                        {
+                            int rows = conn.Update(selectedGroup);
+
+                            conn.CreateTable<Translate>();
+                            var posts = conn.Table<Translate>().ToList();
+                            i = 0;
+                            while (i < posts.Count)
+                            {
+                                var quest = posts[i];
+                                if (quest.GroupName == originalGroup)
+                                {
+                                    quest.GroupName = selectedGroup.GroupName;
+                                    rows = conn.Update(quest);
+                                }
+                                i++;
+                            }
+
+                            if (rows > 0)
+                            {
+                                DisplayAlert("Úspěch", "Název skupiny byl úspěšně změněn!", "Ok");
+                                ff.UpdateFirebaseUserGroups(false);
+                                Navigation.PopAsync();
+                            }
+                            else
+                            {
+                                DisplayAlert("Chyba", "Název skupiny se nepovedlo změnit!", "Ok");
+                            }
+                        }
+                        else
+                        {
+                            DisplayAlert("Chyba", "Skupina se stejným názvem již existuje!", "Ok");
+                        }
                     }
                 }
-            }
+            }         
         }
 
         private void btn_delete_Clicked(object sender, EventArgs e)

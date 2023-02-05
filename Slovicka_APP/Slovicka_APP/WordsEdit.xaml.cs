@@ -14,7 +14,7 @@ namespace Slovicka_APP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WordsEdit : ContentPage
     {
-        Group selectedGroup; Translate selectedTranslate; FirebaseFirestore ff = new FirebaseFirestore();
+        Group selectedGroup; Translate selectedTranslate; FirebaseFirestore ff = new FirebaseFirestore(); MainClass mainClass = new MainClass();
 
         public WordsEdit(Group selectedGroup, Translate selectedTranslate)
         {
@@ -40,29 +40,40 @@ namespace Slovicka_APP
 
         private void btn_update_Clicked(object sender, EventArgs e)
         {
-            selectedTranslate.FirstWord = ent_firstWord.Text;
-            selectedTranslate.SecondWord = ent_secondWord.Text;
-            if (pk_group.SelectedItem != null)
+            if (ent_firstWord.Text == null || ent_secondWord.Text == null)
             {
-                int index = pk_group.SelectedIndex;
-                selectedTranslate.GroupName = pk_group.Items[index];
+                DisplayAlert("Chyba", "Pole slova nebo překladu je prázdné!", "Ok");
             }
+            else if (mainClass.CheckForbiddenChars(ent_firstWord.Text) || mainClass.CheckForbiddenChars(ent_secondWord.Text))
+            {
+                DisplayAlert("Chyba", "Slovo nebo překlad obsahuje zakázané znaky (;:+=)!", "Ok");
+            }
+            else
+            {
+                selectedTranslate.FirstWord = ent_firstWord.Text;
+                selectedTranslate.SecondWord = ent_secondWord.Text;
+                if (pk_group.SelectedItem != null)
+                {
+                    int index = pk_group.SelectedIndex;
+                    selectedTranslate.GroupName = pk_group.Items[index];
+                }
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-            {
-                conn.CreateTable<Translate>();
-                int rows = conn.Update(selectedTranslate);
-                if (rows > 0)
+                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
                 {
-                    DisplayAlert("Úspěch", "Překlad byl úspěšně změněn!", "Ok");
-                    ff.UpdateFirebaseUserGroups(false);
-                    Navigation.PopAsync();
+                    conn.CreateTable<Translate>();
+                    int rows = conn.Update(selectedTranslate);
+                    if (rows > 0)
+                    {
+                        DisplayAlert("Úspěch", "Překlad byl úspěšně změněn!", "Ok");
+                        ff.UpdateFirebaseUserGroups(false);
+                        Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        DisplayAlert("Chyba", "Překlad se nepovedlo změnit!", "Ok");
+                    }
                 }
-                else
-                {
-                    DisplayAlert("Chyba", "Překlad se nepovedlo změnit!", "Ok");
-                }
-            }
+            }               
         }
 
         private void btn_delete_Clicked(object sender, EventArgs e)

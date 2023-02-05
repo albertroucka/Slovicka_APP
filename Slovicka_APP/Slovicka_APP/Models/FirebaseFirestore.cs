@@ -315,7 +315,7 @@ namespace Slovicka_APP.Models
                     {
                         foreach (var item0 in translatesList)
                         {
-                            string s = $"{item0.FirstWord}-{item0.SecondWord}";
+                            string s = $"{item0.FirstWord}={item0.SecondWord}";
                             translates = translates + " " + s + " +";
                         }
                         translates = translates.Remove(0, 1);
@@ -514,7 +514,7 @@ namespace Slovicka_APP.Models
 
                 foreach (var item in translates)
                 {
-                    int i = item.IndexOf("-");
+                    int i = item.IndexOf("=");
                     string firstLang = item.Substring(0, i);
                     string secondLang = item.Remove(0, i + 1);
 

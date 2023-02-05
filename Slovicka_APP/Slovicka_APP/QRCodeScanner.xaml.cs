@@ -35,7 +35,7 @@ namespace Slovicka_APP
             }
             else
             {
-                if (mainClass.CheckInternetConnection())
+                if (ff.CheckInternetConnection())
                 {
                     CheckGroupShareCode(groupCode);
                 }
@@ -166,7 +166,7 @@ namespace Slovicka_APP
             stringResult = stringResult.Remove(0, i + 1);
 
 
-            if (mainClass.CheckInternetConnection())
+            if (ff.CheckInternetConnection())
             {
                 CheckGroupShareCode(groupCode);
             }

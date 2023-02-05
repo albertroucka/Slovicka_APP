@@ -49,6 +49,10 @@ namespace Slovicka_APP
                 {
                     DisplayAlert("Chyba", "Musíte vybrat dva různé jazyky překladu!", "Ok");
                 }
+                else if (mainClass.CheckForbiddenChars(ent_groupName.Text))
+                {
+                    DisplayAlert("Chyba", "Název skupiny obsahuje zakázané znaky (;:+=)!", "Ok");
+                }
                 else
                 {
                     int index = pk_firstLang.SelectedIndex;
