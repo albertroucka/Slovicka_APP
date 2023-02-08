@@ -14,7 +14,8 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
@@ -27,19 +28,21 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Frame x:Name="frame" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <Frame x:Name="frame0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
             <Entry x:Name="ent_groupName" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Placeholder="Zadejte název skupiny" PlaceholderColor="{StaticResource app_color_third}" TextColor="{StaticResource app_color_third}"/>
             <Label x:Name="lb_firstLang" Grid.Row="2" Grid.Column="2" Text="Slovo:" FontSize="20" TextColor="{StaticResource app_color_third}" VerticalTextAlignment="Center"/>
-            <Picker x:Name="pk_firstLang" Grid.Row="2" Grid.Column="3" Title="Vyberte jazyk" FontSize="18" TextColor="{StaticResource app_color_third}" TitleColor="{StaticResource app_color_third}" IsEnabled="True" HorizontalOptions="Start" Margin="-60,-15,0,0"/>
+            <Picker x:Name="pk_firstLang" Grid.Row="2" Grid.Column="3" Title="Vyberte jazyk     " FontSize="18" TextColor="{StaticResource app_color_third}" TitleColor="{StaticResource app_color_third}" IsEnabled="True" HorizontalOptions="Start" Margin="-60,-15,0,0"/>
             <Label x:Name="lb_secondLang" Grid.Row="3" Grid.Column="2" Text="Překlad: " FontSize="20" TextColor="{StaticResource app_color_third}" VerticalTextAlignment="Center"/>
-            <Picker x:Name="pk_secondLang" Grid.Row="3" Grid.Column="3" Title="Vyberte jazyk" FontSize="18" TextColor="{StaticResource app_color_third}" TitleColor="{StaticResource app_color_third}" IsEnabled="True" HorizontalOptions="Start" Margin="-60,-15,0,0"/>
+            <Picker x:Name="pk_secondLang" Grid.Row="3" Grid.Column="3" Title="Vyberte jazyk     " FontSize="18" TextColor="{StaticResource app_color_third}" TitleColor="{StaticResource app_color_third}" IsEnabled="True" HorizontalOptions="Start" Margin="-60,-15,0,0"/>
             <Button x:Name="btn_saveGroup" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Text="PŘIDAT" FontSize="20" TextColor="{StaticResource app_color_second}" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="15,5,15,5" Clicked="btn_saveGroup_Clicked" />
-            <ListView x:Name="lv_groups" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4" Margin="20,-20,20,20" ItemSelected="lv_groups_ItemSelected">
+
+            <Frame x:Name="frame1" Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <ListView x:Name="lv_groups" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4" Margin="20,-10,20,15" ItemSelected="lv_groups_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding GroupName}" FontSize="20" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding GroupName}" FontSize="20" TextColor="{StaticResource app_color_second}" VerticalOptions="CenterAndExpand" MaxLines="1"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

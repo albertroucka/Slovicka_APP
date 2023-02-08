@@ -32,7 +32,7 @@
 
             <Frame x:Name="frame_first" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20"/>
             <Label x:Name="lb_first_lang_text" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Česky:" TextColor="{StaticResource app_color_second}" FontSize="30" Margin="15,10,0,0"/>
-            <Label x:Name="lb_first_lang" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="XXXXXXXXX" TextColor="{StaticResource app_color_second}" FontSize="50" MaxLines="2" Margin="20,-20,0,0"/>
+            <Label x:Name="lb_first_lang" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="XXXXXXXXX" TextColor="{StaticResource app_color_second}" FontSize="40" MaxLines="2" Margin="20,-30,10,0"/>
 
             <Frame x:Name="frame_second" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
             <Label x:Name="lb_second_lang_text" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Anglicky:" TextColor="{StaticResource app_color_main}" FontSize="30" Margin="15,10,0,0"/>

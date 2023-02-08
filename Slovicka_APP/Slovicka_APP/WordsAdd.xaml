@@ -5,14 +5,16 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition Height="45"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -21,18 +23,19 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Entry x:Name="firstWord" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Slovo" Margin="15,0,15,0"/>
-            <Entry x:Name="secondWord" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" Margin="15,0,15,0"/>
-            <Picker x:Name="pk_group" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Title="Vyberte skupinu" ItemDisplayBinding="{Binding GroupName}" Margin="15,0,15,0"/>
-            <Button x:Name="btn_save" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="PŘIDAT" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,10,35,10" Clicked="btn_save_Clicked"/>
+            <Frame x:Name="frame0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
+            <Entry x:Name="firstWord" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Slovo" Margin="15,5,15,-5"/>
+            <Entry x:Name="secondWord" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" Margin="15,-5,15,0"/>
+            <Picker x:Name="pk_group" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Title="Vyberte skupinu" ItemDisplayBinding="{Binding GroupName}" Margin="15,-5,15,0"/>
+            <Button x:Name="btn_save" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="PŘIDAT" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_save_Clicked"/>
 
-            <Frame x:Name="frame" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" BorderColor="{StaticResource app_color_main}" CornerRadius="20" Margin="0"/>
-            <ListView x:Name="lv_groups" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" ItemSelected="lv_groups_ItemSelected" Margin="15">
+            <Frame x:Name="frame" Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20" Margin="0"/>
+            <ListView x:Name="lv_groups" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" ItemSelected="lv_groups_ItemSelected" Margin="20,-10,20,15">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding GroupName}" FontSize="20" TextColor="{StaticResource app_color_third}" VerticalOptions="CenterAndExpand" MaxLines="1"/>
+                                <Label Text="{Binding GroupName}" FontSize="20" TextColor="{StaticResource app_color_second}" VerticalOptions="CenterAndExpand" MaxLines="1"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
