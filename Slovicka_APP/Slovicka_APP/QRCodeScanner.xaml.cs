@@ -131,7 +131,17 @@ namespace Slovicka_APP
                 if (obj.Count > 0 && obj[0] != null)
                 {
                     string QRCode = obj[0].DisplayValue;
-                    ReadQRCode(QRCode);
+                    string stringResult = Encoding.UTF8.GetString(Convert.FromBase64String(QRCode));
+
+                    try
+                    {
+                        ReadQRCode(stringResult);
+                    }
+                    catch (Exception)
+                    {
+                        DisplayAlert("Chyba", "Neplatný QR kód!", "Ok");
+                    }     
+                    
                     //await DisplayAlert("Úspěch", "QR byl úspěšně rozpoznán!", "Ok");
                 }
                 else
@@ -142,10 +152,8 @@ namespace Slovicka_APP
             }
         }
 
-        private void ReadQRCode(string QRCode)
+        private void ReadQRCode(string stringResult)
         {
-            string stringResult = Encoding.UTF8.GetString(Convert.FromBase64String(QRCode));
-
             int i = stringResult.IndexOf(";");
             string appName = stringResult.Substring(0, i);
             stringResult = stringResult.Remove(0, i + 1);

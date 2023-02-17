@@ -19,13 +19,13 @@ namespace Slovicka_APP
         public UserRegistration()
         {
             InitializeComponent();
-            lb_conditions.Text = "*Registrací souhlasíte s podmínkami <a href='https://albertroucka.github.io/privacypolicy'>aplikace</a>";
+            lb_conditions.Text = "*Registrací souhlasíte s podmínkami <a href='https://aplikaceslovicka.cz/privacypolicy.html'>aplikace</a>";
         }
 
         [Obsolete]
         private void lb_conditions_Tapped(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri("https://albertroucka.github.io/privacypolicy"));
+            Device.OpenUri(new Uri("https://aplikaceslovicka.cz/privacypolicy.html"));
         }
 
         private void btn_confirm_Clicked(object sender, EventArgs e)

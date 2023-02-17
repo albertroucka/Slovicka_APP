@@ -15,7 +15,7 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -31,7 +31,7 @@
 
             <Frame x:Name="frame" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
             <Label x:Name="lb_first_lang_text" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Česky:" TextColor="{StaticResource app_color_main}" FontSize="30" Margin="15,10,0,0"/>
-            <Label x:Name="lb_first_lang" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="XXXXXXXXX" TextColor="{StaticResource app_color_main}" FontSize="40" VerticalTextAlignment="Center" MaxLines="3" Margin="20,-60,10,0"/>
+            <Label x:Name="lb_first_lang" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="XXXXXXXXX" TextColor="{StaticResource app_color_main}" FontSize="40" VerticalTextAlignment="Center" MaxLines="2" Margin="20,-30,10,0"/>
 
             <Button x:Name="btn_A" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Možnost A" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_A_Clicked"/>
             <Button x:Name="btn_B" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="Možnost B" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_B_Clicked"/>

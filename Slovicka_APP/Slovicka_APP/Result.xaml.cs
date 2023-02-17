@@ -61,7 +61,6 @@ namespace Slovicka_APP
                 img_trophy2.Source = "trophy_gray.png";
             }
 
-            //přidání trofejí do uživatelského účtu
             mainClass.UpdateUserStats(trophiesCount);
         }
 
@@ -92,7 +91,6 @@ namespace Slovicka_APP
 
         protected override bool OnBackButtonPressed()
         {
-            //Navigation.PushAsync(new Options());
             Navigation.PopAsync();
             Navigation.PopAsync();
             return true;

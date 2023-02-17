@@ -79,23 +79,6 @@ namespace Slovicka_APP
         {
             if (translatesList.Count() > 0)
             {
-                //Nemělo by nikdy nastat
-                /*bool bannedChars = false;
-                foreach (var item in translatesList)
-                {
-                    if (mainClass.CheckForbiddenChars(item.FirstWord) || mainClass.CheckForbiddenChars(item.SecondWord))
-                    {
-                        bannedChars = true;
-                        break;
-                    }
-                }
-
-                if (bannedChars)
-                {
-                    DisplayAlert("Chyba!", "Skupina obsahuje zakázané znaky (;:+=)!", "Ok");
-                    Navigation.PopAsync();
-                }*/
-
                 string translates = string.Empty;
                 foreach (var item in translatesList)
                 {

@@ -33,7 +33,6 @@ namespace Slovicka_APP
             await auth.RefreshUserDetails();
             bool verify = auth.User.IsEmailVerified;
             await authProvider.RefreshAuthAsync(auth);
-            //ff.FirebaseUserLogout(null);
 
             if (verify)
             {

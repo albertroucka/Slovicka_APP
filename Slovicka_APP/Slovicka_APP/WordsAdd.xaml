@@ -24,9 +24,9 @@
             </Grid.ColumnDefinitions>
 
             <Frame x:Name="frame0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_second}" BorderColor="{StaticResource app_color_main}" CornerRadius="20"/>
-            <Entry x:Name="firstWord" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Slovo" Margin="15,5,15,-5"/>
-            <Entry x:Name="secondWord" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" Margin="15,-5,15,0"/>
-            <Picker x:Name="pk_group" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Title="Vyberte skupinu" ItemDisplayBinding="{Binding GroupName}" Margin="15,-5,15,0"/>
+            <Entry x:Name="firstWord" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Slovo" PlaceholderColor="{StaticResource app_color_third}" TextColor="{StaticResource app_color_third}" Margin="15,5,15,-5"/>
+            <Entry x:Name="secondWord" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Placeholder="Překlad" PlaceholderColor="{StaticResource app_color_third}" TextColor="{StaticResource app_color_third}" Margin="15,-5,15,0"/>
+            <Picker x:Name="pk_group" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Title="Vyberte skupinu" TextColor="{StaticResource app_color_third}" TitleColor="{StaticResource app_color_third}" ItemDisplayBinding="{Binding GroupName}" Margin="15,-5,15,0"/>
             <Button x:Name="btn_save" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="PŘIDAT" TextColor="{StaticResource app_color_second}" FontSize="20" BackgroundColor="{StaticResource app_color_main}" CornerRadius="50" Margin="35,5,35,5" Clicked="btn_save_Clicked"/>
 
             <Frame x:Name="frame" Grid.Row="7" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="{StaticResource app_color_main}" CornerRadius="20" Margin="0"/>
